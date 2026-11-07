@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel da Mamãe • Confirmações do Ethan 🍄⭐</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #121526;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+        .retro-box {
+            background: rgba(22, 28, 54, 0.9);
+            border: 3px solid #fbd000;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .btn-retro {
+            font-family: 'Press Start 2P', cursive;
+            border: 3px solid #000;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 10px;
+            box-shadow: 3px 3px 0 #000;
+            transition: all 0.1s;
+        }
+        .btn-retro:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #000;
+        }
+    </style>
+</head>
+<body class="p-3 sm:p-6 flex flex-col items-center">
+
+    <!-- Container Central -->
+    <div class="w-full max-w-2xl space-y-4">
+        
+        <!-- Topo / Cabeçalho -->
+        <div class="retro-box p-4 text-center border-yellow-400">
+            <div class="flex items-center justify-between mb-2">
+                <a href="index.html" class="text-xs text-yellow-300 hover:text-white flex items-center gap-1.5 no-underline">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Ver Convite</span>
+                </a>
+                <span class="text-[9px] text-green-400 bg-black/60 px-2 py-1 rounded-full border border-green-500/40">
+                    🟢 Sincronizado
+                </span>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 mb-1">
+                <span class="text-2xl">👑</span>
+                <h1 class="pixel-font text-xs sm:text-sm text-yellow-300">PAINEL DA MAMÃE</h1>
+                <span class="text-2xl">🍄</span>
+            </div>
+            <p class="text-sm text-gray-300">Acompanhamento das Confirmações de Presença • 1 Aninho Ethan</p>
+        </div>
+
+        <!-- Cards de Resumo e Métricas -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <!-- Total de Pessoas -->
+            <div class="bg-gradient-to-br from-emerald-600 to-green-700 p-3 rounded-xl border-2 border-white shadow-lg text-center">
+                <div class="text-xs text-green-100 font-bold uppercase tracking-wider">👥 Total Geral</div>
+                <div class="text-3xl font-extrabold text-white mt-1" id="statTotalPessoas">0</div>
+                <div class="text-[10px] text-green-200">pessoas</div>
+            </div>
+
+            <!-- Adultos -->
+            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-3 rounded-xl border-2 border-white shadow-lg text-center">
+                <div class="text-xs text-blue-100 font-bold uppercase tracking-wider">👨 Adultos</div>
+                <div class="text-3xl font-extrabold text-white mt-1" id="statAdultos">0</div>
+                <div class="text-[10px] text-blue-200">confirmados</div>
+            </div>
+
+            <!-- Crianças -->
+            <div class="bg-gradient-to-br from-amber-500 to-yellow-600 p-3 rounded-xl border-2 border-white shadow-lg text-center">
+                <div class="text-xs text-yellow-100 font-bold uppercase tracking-wider">🧒 Crianças</div>
+                <div class="text-3xl font-extrabold text-white mt-1" id="statCriancas">0</div>
+                <div class="text-[10px] text-yellow-100">confirmadas</div>
+            </div>
+
+            <!-- Famílias -->
+            <div class="bg-gradient-to-br from-rose-600 to-red-700 p-3 rounded-xl border-2 border-white shadow-lg text-center">
+                <div class="text-xs text-rose-100 font-bold uppercase tracking-wider">💌 Famílias</div>
+                <div class="text-3xl font-extrabold text-white mt-1" id="statFamilias">0</div>
+                <div class="text-[10px] text-rose-200">respostas</div>
+            </div>
+        </div>
+
+        <!-- Barra de Ações e Busca -->
+        <div class="retro-box p-3 flex flex-wrap gap-2 items-center justify-between">
+            <div class="flex-1 min-w-[200px]">
+                <input type="text" id="filtroBusca" oninput="filtrarLista()" placeholder="🔍 Buscar nome do convidado..." class="w-full bg-[#161a33] border-2 border-gray-600 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400">
+            </div>
+
+            <div class="flex gap-2">
+                <button onclick="carregarConfirmacoes()" class="btn-retro bg-blue-600 hover:bg-blue-500 text-white" title="Recarregar">
+                    <i class="fa-solid fa-rotate"></i>
+                    <span class="hidden sm:inline">ATUALIZAR</span>
+                </button>
+                <button onclick="copiarResumoZap()" class="btn-retro bg-emerald-500 hover:bg-emerald-400 text-black font-bold" title="Copiar resumo">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>COPIAR LISTA</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lista de Convidados -->
+        <div class="retro-box p-4">
+            <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-700">
+                <h2 class="pixel-font text-xs text-yellow-300">📋 LISTA DE CONFIRMADOS</h2>
+                <span class="text-xs text-gray-400" id="lblUltimaAtualizacao">Atualizando...</span>
+            </div>
+
+            <!-- Carregando -->
+            <div id="loadingBox" class="py-12 text-center text-gray-400 space-y-2">
+                <i class="fa-solid fa-spinner fa-spin text-3xl text-yellow-400"></i>
+                <p class="text-sm">Buscando confirmações na nuvem...</p>
+            </div>
+
+            <!-- Vazio -->
+            <div id="emptyBox" class="hidden py-12 text-center text-gray-400 space-y-2">
+                <div class="text-4xl">🦖</div>
+                <p class="text-base font-bold text-gray-300">Nenhuma confirmação ainda!</p>
+                <p class="text-xs text-gray-500">Assim que seus convidados confirmarem pelo link, eles aparecerão aqui instantaneamente.</p>
+            </div>
+
+            <!-- Grid de Convidados -->
+            <div id="gridConvidados" class="space-y-2.5">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Link Direto para a Planilha do Google -->
+        <div class="text-center pt-2 pb-6">
+            <a href="https://docs.google.com/spreadsheets/d/10OhPoBiRADtvGNBFG46NIgVrWUzJCVDoscS_Po3ttXs/edit#gid=0" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:text-yellow-300 flex items-center justify-center gap-1.5 no-underline">
+                <i class="fa-solid fa-table"></i>
+                <span>Abrir planilha oficial no Google Planilhas</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Script de Carregamento e Gestão -->
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmXyjnVs5uH41a_9bddnNfIn-M2KMU4arwHreAlRkB0DFw3ziMLeR5MOVRarQy_4r/exec';
+        const SPREADSHEET_ID = '10OhPoBiRADtvGNBFG46NIgVrWUzJCVDoscS_Po3ttXs';
+
+        let listaConvidadosGlobal = [];
+
+        async function carregarConfirmacoes() {
+            const loading = document.getElementById('loadingBox');
+            const empty = document.getElementById('emptyBox');
+            const grid = document.getElementById('gridConvidados');
+            const lblAtualizacao = document.getElementById('lblUltimaAtualizacao');
+
+            loading.style.display = 'block';
+            empty.classList.add('hidden');
+            grid.innerHTML = '';
+            lblAtualizacao.innerText = 'Buscando...';
+
+            const code = `
+            (function() {
+                var ss = SpreadsheetApp.openById('${SPREADSHEET_ID}');
+                var sheet = ss.getSheetByName('Convite_Ethan');
+                if (!sheet) return { list: [] };
+                var data = sheet.getDataRange().getValues();
+                var list = [];
+                for (var i = 1; i < data.length; i++) {
+                    var row = data[i];
+                    if (row[1]) {
+                        list.push({
+                            linha: i + 1,
+                            dataHora: String(row[0] || ''),
+                            nome: String(row[1] || ''),
+                            adultos: Number(row[2]) || 0,
+                            criancas: Number(row[3]) || 0,
+                            total: Number(row[4]) || (Number(row[2]) || 0) + (Number(row[3]) || 0),
+                            mensagem: String(row[5] || '')
+                        });
+                    }
+                }
+                return { list: list };
+            })()
+            `;
+
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'execute_command', code })
+                });
+
+                const json = await res.json();
+                loading.style.display = 'none';
+
+                if (json && json.result && Array.isArray(json.result.list)) {
+                    // Ordena pelos mais recentes primeiro
+                    listaConvidadosGlobal = json.result.list.reverse();
+                    atualizarEstatisticas(listaConvidadosGlobal);
+                    renderizarCards(listaConvidadosGlobal);
+                    lblAtualizacao.innerText = 'Atualizado às ' + new Date().toLocaleTimeString('pt-BR');
+                } else {
+                    empty.classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error(err);
+                loading.style.display = 'none';
+                grid.innerHTML = '<div class="text-center text-red-400 py-6">Erro ao conectar com a planilha. Toque em Atualizar.</div>';
+            }
+        }
+
+        function atualizarEstatisticas(lista) {
+            let totalAdultos = 0;
+            let totalCriancas = 0;
+            let totalGeral = 0;
+
+            lista.forEach(c => {
+                totalAdultos += c.adultos;
+                totalCriancas += c.criancas;
+                totalGeral += c.total;
+            });
+
+            document.getElementById('statTotalPessoas').innerText = totalGeral;
+            document.getElementById('statAdultos').innerText = totalAdultos;
+            document.getElementById('statCriancas').innerText = totalCriancas;
+            document.getElementById('statFamilias').innerText = lista.length;
+        }
+
+        function renderizarCards(lista) {
+            const grid = document.getElementById('gridConvidados');
+            const empty = document.getElementById('emptyBox');
+            grid.innerHTML = '';
+
+            if (lista.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            lista.forEach((c, idx) => {
+                const card = document.createElement('div');
+                card.className = 'bg-[#181d38] border-2 border-gray-700 hover:border-yellow-400/80 rounded-xl p-3.5 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md';
+
+                let dataFmt = c.dataHora;
+                try {
+                    const d = new Date(c.dataHora);
+                    if (!isNaN(d.getTime())) {
+                        dataFmt = d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                    }
+                } catch(e) {}
+
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-bold text-white">${c.nome}</span>
+                            <span class="text-[10px] bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-bold">
+                                ${c.total} ${c.total === 1 ? 'pessoa' : 'pessoas'}
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-2 text-xs text-gray-300">
+                            <span class="bg-blue-900/40 border border-blue-500/30 px-2 py-0.5 rounded text-blue-200">
+                                👨 ${c.adultos} ${c.adultos === 1 ? 'Adulto' : 'Adultos'}
+                            </span>
+                            ${c.criancas > 0 ? `
+                                <span class="bg-amber-900/40 border border-amber-500/30 px-2 py-0.5 rounded text-amber-200">
+                                    🧒 ${c.criancas} ${c.criancas === 1 ? 'Criança' : 'Crianças'}
+                                </span>
+                            ` : ''}
+                        </div>
+
+                        ${c.mensagem ? `
+                            <div class="text-xs text-yellow-200/90 italic pt-1 flex items-start gap-1">
+                                <i class="fa-solid fa-quote-left text-[9px] text-yellow-400 mt-1"></i>
+                                <span>${c.mensagem}</span>
+                            </div>
+                        ` : ''}
+
+                        <div class="text-[10px] text-gray-500 pt-0.5">
+                            Confirmado em: ${dataFmt}
+                        </div>
+                    </div>
+
+                    <div class="flex sm:flex-col gap-1.5 shrink-0 justify-end">
+                        <button onclick="copiarMensagemIndividual('${encodeURIComponent(c.nome)}', ${c.adultos}, ${c.criancas})" class="bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-600 rounded-lg px-2.5 py-1 text-xs flex items-center gap-1 active:scale-95" title="Copiar detalhes">
+                            <i class="fa-regular fa-copy"></i>
+                            <span class="text-[11px]">Copiar</span>
+                        </button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filtrarLista() {
+            const termo = (document.getElementById('filtroBusca').value || '').toLowerCase().trim();
+            if (!termo) {
+                renderizarCards(listaConvidadosGlobal);
+                return;
+            }
+            const filtrada = listaConvidadosGlobal.filter(c => 
+                (c.nome || '').toLowerCase().includes(termo) ||
+                (c.mensagem || '').toLowerCase().includes(termo)
+            );
+            renderizarCards(filtrada);
+        }
+
+        function copiarMensagemIndividual(nomeEnc, adultos, criancas) {
+            const nome = decodeURIComponent(nomeEnc);
+            const total = adultos + criancas;
+            const texto = `*Confirmado:* ${nome} (${total} pessoas: ${adultos} adultos e ${criancas} crianças)`;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('Copiado: ' + texto);
+            });
+        }
+
+        function copiarResumoZap() {
+            if (listaConvidadosGlobal.length === 0) {
+                alert('Nenhum convidado confirmado para copiar.');
+                return;
+            }
+
+            let totalAdultos = 0;
+            let totalCriancas = 0;
+            let totalGeral = 0;
+
+            let texto = `🍄⭐ *LISTA DE CONFIRMADOS - 1 ANINHO DO ETHAN* ⭐🍄%0A%0A`;
+
+            listaConvidadosGlobal.forEach((c, idx) => {
+                totalAdultos += c.adultos;
+                totalCriancas += c.criancas;
+                totalGeral += c.total;
+                texto += `${idx + 1}. *${c.nome}* - ${c.total} pessoas (${c.adultos} adultos` + (c.criancas > 0 ? `, ${c.criancas} crianças)` : ')') + `%0A`;
+            });
+
+            texto += `%0A=========================%0A`;
+            texto += `👥 *TOTAL GERAL:* ${totalGeral} pessoas%0A`;
+            texto += `👨 *Adultos:* ${totalAdultos}%0A`;
+            texto += `🧒 *Crianças:* ${totalCriancas}%0A`;
+            texto += `💌 *Famílias Confirmadas:* ${listaConvidadosGlobal.length}%0A`;
+
+            const linkZap = 'https://api.whatsapp.com/send?text=' + texto;
+            window.open(linkZap, '_blank');
+        }
+
+        // Carrega automaticamente ao abrir a página
+        window.addEventListener('DOMContentLoaded', carregarConfirmacoes);
+    </script>
+</body>
+</html>
