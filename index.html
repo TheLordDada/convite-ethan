@@ -276,15 +276,26 @@
         .page-view {
             display: none;
             flex-direction: column;
-            justify-content: space-evenly;
+            justify-content: flex-start;
             align-items: center;
             width: 100%;
-            max-width: 600px;
+            max-width: 520px;
             margin: 0 auto;
             height: 100%;
-            padding: clamp(52px, 7vh, 70px) clamp(12px, 3vw, 24px) clamp(82px, 11vh, 105px) clamp(12px, 3vw, 24px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-top: clamp(48px, 6vh, 60px);
+            padding-bottom: 100px;
+            padding-left: clamp(10px, 3vw, 20px);
+            padding-right: clamp(10px, 3vw, 20px);
+            gap: clamp(8px, 1.8vh, 16px);
             position: relative;
             z-index: 10;
+        }
+        .page-view::-webkit-scrollbar {
+            display: none;
         }
 
         /* Tipografia e Componentes Fluidos de Alto Impacto */
@@ -442,7 +453,6 @@
     <div class="absolute top-0 left-0 w-full px-4 pt-3.5 pb-2 flex justify-between items-center z-30 bg-gradient-to-b from-black/60 to-transparent">
         <div class="flex items-center gap-2 text-white hud-status drop-shadow-[2px_2px_0_#000]">
             <span class="text-yellow-300 font-bold">🪙x<span id="coinCounter">00</span></span>
-            <span id="secretHint" class="text-green-400 ml-1 text-xs font-bold">(0/10 🎮)</span>
         </div>
 
         <button id="musicBtn" onclick="toggleMusic()" class="bg-black/85 hover:bg-black text-white border-2 border-white rounded-lg hud-sound-btn font-bold flex items-center gap-2 shadow-[2px_2px_0_#000] active:translate-y-0.5">
@@ -523,7 +533,7 @@
                 ?
             </div>
             <span id="blockSubtext" class="text-q-sub text-white drop-shadow-[1px_1px_0_#000] animate-pulse font-bold">
-                ▲ TOQUE 10X PARA SURPRESA! ▲
+                ▲ TOQUE NO BLOCO! ▲
             </span>
         </div>
 
@@ -547,9 +557,6 @@
                 </button>
                 <button onclick="abrirModalConfirmar()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold border-2 border-black rounded-lg card-party-btn shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-pulse inline-block">
                     ✅ CONFIRMAR PRESENÇA
-                </button>
-                <button id="playMiniGameBtn" onclick="openMiniGame()" class="hidden bg-yellow-400 hover:bg-yellow-300 text-black font-bold border-2 border-black rounded-lg card-party-btn shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-bounce">
-                    🕹️ JOGAR BABY ETHAN
                 </button>
             </div>
         </div>
@@ -698,32 +705,6 @@
         </div>
     </div>
 
-    <!-- ==========================================
-         MODAL MINIGAME SECRETO: SUPER BABY ETHAN
-    =========================================== -->
-    <div id="miniGameModal" class="hidden absolute inset-0 z-50 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-3">
-        <div class="retro-card w-full max-w-sm p-3 text-center border-4 border-yellow-400 flex flex-col items-center space-y-2">
-            <div class="flex justify-between items-center w-full px-1">
-                <span class="text-yellow-300 text-[10px] drop-shadow-[2px_2px_0_#000]">🕹️ SUPER BABY ETHAN</span>
-                <span class="text-green-400 text-[10px] drop-shadow-[2px_2px_0_#000]">PTS: <span id="gameScore">0</span></span>
-            </div>
-
-            <div class="text-[8px] text-white/90">
-                TOQUE NA TELA OU NO BOTÃO PARA O ETHAN PULAR!
-            </div>
-
-            <canvas id="ethangameCanvas" width="300" height="200" class="w-full h-auto"></canvas>
-
-            <div class="flex gap-2 w-full">
-                <button onpointerdown="jumpBabyEthan(event)" class="retro-btn retro-btn-green flex-1 py-2.5 text-[9px]">
-                    ⬆️ PULAR!
-                </button>
-                <button onclick="closeMiniGame()" class="retro-btn retro-btn-red py-2.5 px-3 text-[9px]">
-                    ✖ SAIR
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Cenário Inferior (Cano Verde do Mario e Colina) -->
     <div class="scenery flex justify-between items-end px-4">
@@ -925,15 +906,7 @@
         playCoinSound();
 
         coins++;
-        blockClicks++;
         document.getElementById('coinCounter').innerText = coins < 10 ? '0' + coins : coins;
-
-        const hintEl = document.getElementById('secretHint');
-        if (blockClicks < 10) {
-            hintEl.innerText = `(${blockClicks}/10 🎮)`;
-        } else {
-            hintEl.innerText = `🎮 LIBERADO!`;
-        }
 
         blockEl.classList.remove('bump');
         void blockEl.offsetWidth;
@@ -944,15 +917,7 @@
         blockEl.appendChild(coin);
         setTimeout(() => coin.remove(), 650);
 
-        if (blockClicks === 10) {
-            play1UpSound();
-            showToast('🎉 MINIGAME DO ETHAN DESBLOQUEADO!');
-            document.getElementById('playMiniGameBtn').classList.remove('hidden');
-            document.getElementById('blockSubtext').innerText = '▲ TOQUE PARA JOGAR COM O ETHAN! ▲';
-            setTimeout(() => openMiniGame(), 450);
-        } else if (blockClicks > 10 && blockClicks % 10 === 0) {
-            openMiniGame();
-        }
+        showToast('🪙 +1 MOEDA! 🍄');
     }
 
     // ==========================================
@@ -1073,324 +1038,6 @@
             btn.disabled = false;
             btnText.innerText = '✅ CONFIRMAR & AVISAR NO ZAP';
         }, 500);
-    }
-
-    // ==========================================
-    // MINIGAME: SUPER BABY ETHAN
-    // ==========================================
-    let gameRunning = false;
-    let gameAnimFrame = null;
-    let gameScore = 0;
-    let gameOverState = false;
-
-    const ethanPlayer = { x: 42, y: 142, vy: 0, width: 38, height: 48, grounded: true, runFrame: 0 };
-    let gameCoins = [];
-    let gameObstacles = [];
-    let gameClouds = [{ x: 40, y: 28 }, { x: 190, y: 45 }];
-
-    function openMiniGame() {
-        playPowerUpSound();
-        document.getElementById('miniGameModal').classList.remove('hidden');
-        startMiniGameLoop();
-    }
-
-    function closeMiniGame() {
-        playCoinSound();
-        gameRunning = false;
-        cancelAnimationFrame(gameAnimFrame);
-        document.getElementById('miniGameModal').classList.add('hidden');
-    }
-
-    function startMiniGameLoop() {
-        const canvas = document.getElementById('ethangameCanvas');
-        ethangameReset();
-        gameRunning = true;
-        canvas.onpointerdown = function(e) { e.preventDefault(); jumpBabyEthan(); };
-        cancelAnimationFrame(gameAnimFrame);
-        updateMiniGame();
-    }
-
-    function ethangameReset() {
-        gameScore = 0;
-        gameOverState = false;
-        ethanPlayer.y = 142;
-        ethanPlayer.vy = 0;
-        ethanPlayer.grounded = true;
-        gameCoins = [{ x: 260, y: 95, collected: false }];
-        gameObstacles = [{ x: 320, type: 'mushroom_goomba' }];
-        document.getElementById('gameScore').innerText = gameScore;
-    }
-
-    function jumpBabyEthan(e) {
-        if (e) e.preventDefault();
-        if (gameOverState) {
-            play1UpSound();
-            ethangameReset();
-            return;
-        }
-        if (ethanPlayer.grounded) {
-            ethanPlayer.vy = -10.8;
-            ethanPlayer.grounded = false;
-            playJumpSound();
-        }
-    }
-
-    function drawBabyEthan(ctx, x, y, frame, isJumping) {
-        ctx.save();
-        ctx.translate(x, y);
-        const legSwing = isJumping ? 4 : Math.sin(frame * 0.35) * 5;
-
-        ctx.fillStyle = '#ffdfc4';
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 2;
-
-        ctx.beginPath();
-        ctx.roundRect(7 - legSwing * 0.4, 34, 9, 12, 4);
-        ctx.fill();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.roundRect(6 - legSwing * 0.4, 43, 12, 6, 3);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.roundRect(21 + legSwing * 0.4, 34, 9, 12, 4);
-        ctx.fill();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.roundRect(21 + legSwing * 0.4, 43, 12, 6, 3);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#e52521';
-        ctx.beginPath();
-        ctx.roundRect(3, 16, 31, 14, 5);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#ffdfc4';
-        ctx.beginPath();
-        ctx.arc(3, 25, 4.5, 0, Math.PI * 2);
-        ctx.arc(34, 24 - (isJumping ? 4 : 0), 4.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#1d56d8';
-        ctx.beginPath();
-        ctx.roundRect(6, 20, 25, 17, 4);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillRect(8, 15, 5, 7);
-        ctx.strokeRect(8, 15, 5, 7);
-        ctx.fillRect(24, 15, 5, 7);
-        ctx.strokeRect(24, 15, 5, 7);
-
-        ctx.strokeStyle = '#0f3696';
-        ctx.lineWidth = 1.5;
-        ctx.strokeRect(13, 24, 11, 7);
-
-        ctx.fillStyle = '#ffd700';
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(10.5, 21, 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(26.5, 21, 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#ffdfc4';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(19, 8, 11.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(8, 9, 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = 'rgba(255, 130, 130, 0.55)';
-        ctx.beginPath();
-        ctx.arc(15, 11, 2.5, 0, Math.PI * 2);
-        ctx.arc(26, 11, 2.5, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = '#1a1a1a';
-        ctx.beginPath();
-        ctx.arc(16.5, 7.5, 2, 0, Math.PI * 2);
-        ctx.arc(24, 7.5, 2, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(17, 6.8, 0.7, 0, Math.PI * 2);
-        ctx.arc(24.5, 6.8, 0.7, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.strokeStyle = '#b55b4c';
-        ctx.lineWidth = 1.6;
-        ctx.beginPath();
-        ctx.arc(20.5, 12.2, 2.5, 0.15 * Math.PI, 0.85 * Math.PI);
-        ctx.stroke();
-
-        ctx.fillStyle = '#e52521';
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.ellipse(18.5, -1, 13.5, 7.5, -0.05, Math.PI, 0);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.roundRect(7, -2, 24, 4.5, 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#ffffff';
-        ctx.beginPath();
-        ctx.arc(19.5, -4.5, 4.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-
-        ctx.strokeStyle = '#e52521';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(17, -2.5);
-        ctx.lineTo(18, -6.5);
-        ctx.lineTo(19.5, -4);
-        ctx.lineTo(21, -6.5);
-        ctx.lineTo(22, -2.5);
-        ctx.stroke();
-
-        ctx.restore();
-    }
-
-    function updateMiniGame() {
-        if (!gameRunning) return;
-        const canvas = document.getElementById('ethangameCanvas');
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00a800';
-        ctx.fillRect(0, 188, canvas.width, 6);
-        ctx.fillStyle = '#c84c0c';
-        ctx.fillRect(0, 194, canvas.width, 36);
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(0, 188);
-        ctx.lineTo(canvas.width, 188);
-        ctx.stroke();
-
-        ctx.fillStyle = 'rgba(255,255,255,0.85)';
-        gameClouds.forEach(c => {
-            if (!gameOverState) c.x -= 0.5;
-            if (c.x < -50) c.x = canvas.width + 20;
-            ctx.beginPath();
-            ctx.arc(c.x, c.y, 12, 0, Math.PI * 2);
-            ctx.arc(c.x + 14, c.y - 4, 14, 0, Math.PI * 2);
-            ctx.arc(c.x + 28, c.y, 11, 0, Math.PI * 2);
-            ctx.fill();
-        });
-
-        if (!gameOverState) {
-            ethanPlayer.vy += 0.55;
-            ethanPlayer.y += ethanPlayer.vy;
-            if (ethanPlayer.y >= 140) {
-                ethanPlayer.y = 140;
-                ethanPlayer.vy = 0;
-                ethanPlayer.grounded = true;
-            }
-            ethanPlayer.runFrame++;
-
-            gameCoins.forEach(c => {
-                c.x -= 3.2;
-                ctx.fillStyle = '#ffd700';
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.arc(c.x, c.y, 10, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.stroke();
-
-                if (!c.collected &&
-                    Math.abs((ethanPlayer.x + 18) - c.x) < 24 &&
-                    Math.abs((ethanPlayer.y + 22) - c.y) < 28) {
-                    c.collected = true;
-                    gameScore += 10;
-                    coins++;
-                    document.getElementById('coinCounter').innerText = coins < 10 ? '0' + coins : coins;
-                    document.getElementById('gameScore').innerText = gameScore;
-                    playCoinSound();
-                }
-            });
-
-            if (gameCoins.length && gameCoins[0].x < -20) {
-                gameCoins.shift();
-                gameCoins.push({
-                    x: canvas.width + 40 + Math.random() * 80,
-                    y: 75 + Math.random() * 55,
-                    collected: false
-                });
-            }
-
-            gameObstacles.forEach(obs => {
-                obs.x -= 3.4;
-                ctx.fillStyle = '#00a800';
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 2;
-                ctx.fillRect(obs.x, 160, 26, 28);
-                ctx.strokeRect(obs.x, 160, 26, 28);
-                ctx.fillRect(obs.x - 3, 152, 32, 9);
-                ctx.strokeRect(obs.x - 3, 152, 32, 9);
-
-                if (
-                    ethanPlayer.x + 26 > obs.x &&
-                    ethanPlayer.x + 8 < obs.x + 24 &&
-                    ethanPlayer.y + 44 > 155
-                ) {
-                    gameOverState = true;
-                    playNote(196, 0.3, 0, 'sawtooth', 0.15);
-                }
-            });
-
-            if (gameObstacles.length && gameObstacles[0].x < -35) {
-                gameObstacles.shift();
-                gameScore += 5;
-                document.getElementById('gameScore').innerText = gameScore;
-                gameObstacles.push({
-                    x: canvas.width + 90 + Math.random() * 110
-                });
-            }
-        }
-
-        drawBabyEthan(ctx, ethanPlayer.x, ethanPlayer.y, ethanPlayer.runFrame, !ethanPlayer.grounded);
-
-        if (gameOverState) {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.72)';
-            ctx.fillRect(25, 50, 270, 95);
-            ctx.strokeStyle = '#fbd000';
-            ctx.lineWidth = 3;
-            ctx.strokeRect(25, 50, 270, 95);
-
-            ctx.fillStyle = '#fbd000';
-            ctx.font = '11px "Press Start 2P"';
-            ctx.textAlign = 'center';
-            ctx.fillText('FIM DE FASE!', canvas.width / 2, 82);
-            ctx.fillStyle = '#fff';
-            ctx.font = '8px "Press Start 2P"';
-            ctx.fillText('TOQUE EM PULAR PARA', canvas.width / 2, 108);
-            ctx.fillText('JOGAR DE NOVO! 🍄', canvas.width / 2, 126);
-        }
-
-        gameAnimFrame = requestAnimationFrame(updateMiniGame);
     }
 
     function navigatePage(pageNumber) {
