@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Super Ethan Emerson • 1 Aninho 🍄⭐</title>
+
+    <!-- Meta Tags para Prévia Perfeita no WhatsApp / Redes Sociais -->
+    <meta property="og:title" content="Super Ethan Emerson • 1 Aninho 🍄⭐">
+    <meta property="og:description" content="Você foi convidado para a nossa fase mais especial! 📅 05/Dezembro às 19h no Paquerê. Toque para abrir o convite e confirmar!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelorddada.github.io/convite-ethan/">
+    <meta name="theme-color" content="#e52521">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonte Pixel Art Retrô -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #1a1a2e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Moldura da Tela do Jogo */
+        .game-boy-frame {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            max-height: 820px;
+            position: relative;
+            background: linear-gradient(180deg, #5c94fc 0%, #7aa7ff 78%, #00a800 78%, #c84c0c 82%);
+            border: 6px solid #000;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 0 4px rgba(255,255,255,0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 450px) {
+            .game-boy-frame {
+                max-width: 100%;
+                height: 100dvh;
+                max-height: 100dvh;
+                border-radius: 0;
+                border-width: 0;
+            }
+        }
+
+        /* Nuvens Animadas */
+        .cloud {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.92;
+            pointer-events: none;
+            animation: floatCloud linear infinite;
+        }
+
+        .cloud-1 { top: 8%; left: -120px; animation-duration: 22s; transform: scale(0.9); }
+        .cloud-2 { top: 24%; left: -140px; animation-duration: 30s; animation-delay: 5s; transform: scale(0.65); }
+        .cloud-3 { top: 44%; left: -120px; animation-duration: 26s; animation-delay: 12s; transform: scale(0.8); }
+
+        @keyframes floatCloud {
+            0% { left: -140px; }
+            100% { left: 460px; }
+        }
+
+        /* Colinas e Arbustos no Fundo */
+        .scenery {
+            position: absolute;
+            bottom: 72px;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Chão de Blocos Clássico do Mario */
+        .brick-ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            background-color: #c84c0c;
+            background-image: 
+                linear-gradient(90deg, rgba(0,0,0,0.85) 3px, transparent 3px),
+                linear-gradient(rgba(0,0,0,0.85) 3px, transparent 3px),
+                linear-gradient(90deg, rgba(252,188,176,0.45) 3px, transparent 3px),
+                linear-gradient(rgba(252,188,176,0.45) 3px, transparent 3px);
+            background-size: 36px 36px;
+            background-position: 0 0, 0 0, 3px 3px, 3px 3px;
+            border-top: 5px solid #000;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grass-top {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(90deg, #00a800 0px, #00a800 18px, #58f858 18px, #58f858 36px);
+            border-top: 3px solid #000;
+        }
+
+        /* Letras Coloridas estilo Super Mario */
+        .mario-logo {
+            display: inline-flex;
+            justify-content: center;
+            filter: drop-shadow(4px 4px 0px #000);
+            animation: titleFloat 2s ease-in-out infinite;
+        }
+
+        .mario-logo span {
+            display: inline-block;
+            -webkit-text-stroke: 2px #000;
+            paint-order: stroke fill;
+            font-weight: bold;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* Bloco de Interrogação (?) */
+        .q-block {
+            width: 72px;
+            height: 72px;
+            background-color: #f8b800;
+            border: 4px solid #000;
+            border-radius: 8px;
+            box-shadow: inset -5px -5px 0px #c84c0c, inset 5px 5px 0px #ffe699, 0 6px 0 rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 3px 3px 0 #000;
+            cursor: pointer;
+            position: relative;
+            animation: blockIdle 1.3s ease-in-out infinite;
+            transition: transform 0.08s;
+        }
+
+        .q-block::before, .q-block::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #883000;
+            top: 5px;
+        }
+        .q-block::before { left: 5px; }
+        .q-block::after { right: 5px; }
+
+        @keyframes blockIdle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .q-block.bump {
+            animation: blockBump 0.25s ease-out !important;
+        }
+
+        @keyframes blockBump {
+            0% { transform: translateY(0) scale(1); }
+            40% { transform: translateY(-22px) scale(1.12); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        /* Moeda que pula do bloco */
+        .pop-coin {
+            position: absolute;
+            width: 34px;
+            height: 42px;
+            background: linear-gradient(90deg, #ffd700, #fff3a1, #f89800);
+            border: 3px solid #000;
+            border-radius: 50%;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 20;
+            animation: coinJump 0.65s ease-out forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pop-coin::after {
+            content: '';
+            width: 6px;
+            height: 20px;
+            background: #c84c0c;
+            border-radius: 2px;
+        }
+
+        @keyframes coinJump {
+            0% { opacity: 1; transform: translate(-50%, 0) scaleY(1); }
+            50% { opacity: 1; transform: translate(-50%, -75px) scaleX(0.3); }
+            100% { opacity: 0; transform: translate(-50%, -45px) scaleX(1); }
+        }
+
+        /* Botões Estilo 8-Bit */
+        .retro-btn {
+            font-family: 'Press Start 2P', cursive;
+            border: 4px solid #000;
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-size: 11px;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            cursor: pointer;
+            transition: transform 0.08s, box-shadow 0.08s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .retro-btn-green {
+            background-color: #38b000;
+            box-shadow: inset -4px -4px 0px #1b5e20, inset 4px 4px 0px #80ed99, 4px 4px 0px #000;
+        }
+
+        .retro-btn-red {
+            background-color: #e52521;
+            box-shadow: inset -4px -4px 0px #8b0000, inset 4px 4px 0px #ff8585, 4px 4px 0px #000;
+        }
+
+        .retro-btn-yellow {
+            background-color: #f8b800;
+            color: #000;
+            text-shadow: 1px 1px 0 #fff;
+            box-shadow: inset -4px -4px 0px #b27800, inset 4px 4px 0px #ffe89e, 4px 4px 0px #000;
+        }
+
+        .retro-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: inset -2px -2px 0px rgba(0,0,0,0.4), 1px 1px 0px #000;
+        }
+
+        /* Painel Retrô Escuro */
+        .retro-card {
+            background: rgba(12, 16, 33, 0.88);
+            border: 4px solid #fff;
+            border-radius: 14px;
+            box-shadow: 6px 6px 0px #000;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Páginas */
+        .page-view {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 48px 12px 76px 12px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-view.active {
+            display: flex;
+            animation: screenIn 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        @keyframes screenIn {
+            0% { opacity: 0; transform: scale(0.92); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Animação dos Ícones */
+        .bounce-icon {
+            display: inline-block;
+            animation: iconBounce 1.6s infinite ease-in-out;
+            cursor: pointer;
+        }
+        .bounce-icon:nth-child(2) { animation-delay: 0.25s; }
+        .bounce-icon:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(5deg); }
+        }
+
+        /* Mini Bloco ? da Lista de Presentes */
+        .mini-q {
+            min-width: 44px;
+            height: 44px;
+            background-color: #f8b800;
+            border: 3px solid #000;
+            border-radius: 6px;
+            box-shadow: inset -3px -3px 0px #c84c0c, inset 3px 3px 0px #ffe699;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* Notificação Toast Sem Alert() */
+        #toastMsg {
+            position: absolute;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #fbd000;
+            color: #000;
+            border: 3px solid #000;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 10px;
+            z-index: 60;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+            box-shadow: 4px 4px 0 #000;
+            white-space: nowrap;
+        }
+        #toastMsg.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Canvas do Minigame Baby Ethan */
+        #ethangameCanvas {
+            background: linear-gradient(180deg, #5c94fc 0%, #8ab4ff 80%, #c84c0c 80%);
+            border: 4px solid #fff;
+            border-radius: 12px;
+            box-shadow: 6px 6px 0px #000;
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-boy-frame">
+    
+    <!-- Barra Superior de Status / HUD do Jogo -->
+    <div class="absolute top-0 left-0 w-full px-4 pt-3 pb-2 flex justify-between items-center z-30 bg-gradient-to-b from-black/55 to-transparent">
+        <div class="flex items-center gap-2 text-white text-[10px] drop-shadow-[2px_2px_0_#000]">
+            <span class="text-yellow-300">🪙x<span id="coinCounter">00</span></span>
+            <span id="secretHint" class="text-green-400 ml-1 text-[8px]">(0/10 🎮)</span>
+        </div>
+
+        <button id="musicBtn" onclick="toggleMusic()" class="bg-black/80 hover:bg-black text-white border-2 border-white rounded-lg px-2.5 py-1.5 text-[9px] flex items-center gap-1.5 shadow-[2px_2px_0_#000] active:translate-y-0.5">
+            <span id="musicIcon">🔇</span>
+            <span id="musicText">SOM: TOCAR</span>
+        </button>
+    </div>
+
+    <!-- Nuvens em SVG -->
+    <div class="cloud cloud-1">
+        <svg width="95" height="50" viewBox="0 0 95 50" fill="none">
+            <path d="M25 42H75C83.2843 42 90 35.2843 90 27C90 19.65 84.71 13.53 77.72 12.24C74.88 5.08 67.89 0 59.7 0C50.25 0 42.34 6.72 40.62 15.65C38.45 14.6 36.01 14 33.42 14C24.35 14 17 21.35 17 30.42C17 31.12 17.05 31.8 17.13 32.47C13.06 33.86 10 37.71 10 42.25" fill="white"/>
+            <path d="M20 42H78C84.6 42 90 36.6 90 30C90 23.8 85.2 18.7 79.1 18.1C76.8 10.2 69.5 4.5 60.8 4.5C51.2 4.5 43.2 11.6 41.9 20.9C39.6 19.7 37 19 34.2 19C25.3 19 18 26.3 18 35.2C18 37.6 18.7 39.9 20 42Z" stroke="black" stroke-width="3.5" fill="white"/>
+            <circle cx="38" cy="28" r="2.2" fill="black"/>
+            <circle cx="52" cy="28" r="2.2" fill="black"/>
+        </svg>
+    </div>
+    <div class="cloud cloud-2">
+        <svg width="95" height="50" viewBox="0 0 95 50" fill="none">
+            <path d="M20 42H78C84.6 42 90 36.6 90 30C90 23.8 85.2 18.7 79.1 18.1C76.8 10.2 69.5 4.5 60.8 4.5C51.2 4.5 43.2 11.6 41.9 20.9C39.6 19.7 37 19 34.2 19C25.3 19 18 26.3 18 35.2C18 37.6 18.7 39.9 20 42Z" stroke="black" stroke-width="3.5" fill="white"/>
+        </svg>
+    </div>
+    <div class="cloud cloud-3">
+        <svg width="95" height="50" viewBox="0 0 95 50" fill="none">
+            <path d="M20 42H78C84.6 42 90 36.6 90 30C90 23.8 85.2 18.7 79.1 18.1C76.8 10.2 69.5 4.5 60.8 4.5C51.2 4.5 43.2 11.6 41.9 20.9C39.6 19.7 37 19 34.2 19C25.3 19 18 26.3 18 35.2C18 37.6 18.7 39.9 20 42Z" stroke="black" stroke-width="3.5" fill="white"/>
+        </svg>
+    </div>
+
+    <!-- ==========================================
+         PÁGINA 1: CAPA PRINCIPAL DO CONVITE
+    =========================================== -->
+    <div id="page1" class="page-view active">
+        
+        <!-- Ícones do tema: Cogumelo, Estrela, Dinossauro -->
+        <div class="flex items-center justify-center gap-5 mt-0.5">
+            <div class="bounce-icon" onclick="playPowerUpSound(); showToast('🍄 SUPER COGUMELO!')" title="Toque no Cogumelo!">
+                <svg width="36" height="36" viewBox="0 0 36 36">
+                    <path d="M6 20 C6 8, 30 8, 30 20 Z" fill="#e52521" stroke="#000" stroke-width="2.5"/>
+                    <circle cx="18" cy="12" r="4" fill="#fff"/>
+                    <circle cx="10" cy="16" r="3" fill="#fff"/>
+                    <circle cx="26" cy="16" r="3" fill="#fff"/>
+                    <rect x="11" y="20" width="14" height="11" rx="4" fill="#ffe0b2" stroke="#000" stroke-width="2.5"/>
+                    <line x1="15" y1="23" x2="15" y2="27" stroke="#000" stroke-width="2"/>
+                    <line x1="21" y1="23" x2="21" y2="27" stroke="#000" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="bounce-icon" onclick="play1UpSound(); showToast('⭐ INVENCÍVEL! 1 ANINHO!')" title="Toque na Estrela!">
+                <svg width="38" height="38" viewBox="0 0 36 36">
+                    <polygon points="18,3 22.5,12.5 33,14 25.5,21.5 27.2,32 18,27 8.8,32 10.5,21.5 3,14 13.5,12.5" fill="#fbd000" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="bounce-icon" onclick="playJumpSound(); showToast('🦖 YOSHI DINO!')" title="Toque no Dino!">
+                <span class="text-2xl filter drop-shadow-[2px_2px_0_#000]">🦖</span>
+            </div>
+        </div>
+
+        <!-- Título SUPER ETHAN EMERSON -->
+        <div class="text-center my-0 w-full px-1">
+            <div class="mario-logo text-base sm:text-xl tracking-wider">
+                <span style="color:#e52521">S</span><span style="color:#43b047">U</span><span style="color:#fbd000">P</span><span style="color:#049cd8">E</span><span style="color:#e52521">R</span>&nbsp;
+                <span style="color:#43b047">E</span><span style="color:#fbd000">T</span><span style="color:#e52521">H</span><span style="color:#049cd8">A</span><span style="color:#fbd000">N</span>
+            </div>
+            <div class="mario-logo text-base sm:text-xl tracking-wider mt-0.5">
+                <span style="color:#e52521">E</span><span style="color:#049cd8">M</span><span style="color:#43b047">E</span><span style="color:#fbd000">R</span><span style="color:#e52521">S</span><span style="color:#43b047">O</span><span style="color:#049cd8">N</span>
+            </div>
+            <div class="mt-1 inline-block bg-black/85 border-2 border-yellow-400 rounded-full px-3 py-0.5 text-[9px] text-yellow-300 shadow-[2px_2px_0_#000]">
+                🍄 ⭐ 1 ANINHO 🦖 ⭐
+            </div>
+        </div>
+
+        <!-- Bloco de Interrogação Interativo Compacto -->
+        <div class="relative flex flex-col items-center my-0">
+            <div id="mainQBlock" class="q-block" style="width:52px; height:52px; font-size:26px;" onclick="hitQuestionBlock(this)">
+                ?
+            </div>
+            <span id="blockSubtext" class="text-[7px] text-white mt-1 drop-shadow-[1px_1px_0_#000] animate-pulse">
+                ▲ TOQUE 10X PARA SURPRESA! ▲
+            </span>
+        </div>
+
+        <!-- Painel com Data, Hora, Local e Botões -->
+        <div class="retro-card w-full p-2.5 text-center space-y-1.5">
+            <div class="flex justify-center items-center gap-2 text-yellow-300 text-[10px] sm:text-xs drop-shadow-[2px_2px_0_#000]">
+                <span>📅 05/DEZEMBRO</span>
+                <span>•</span>
+                <span>⏰ 19H</span>
+            </div>
+
+            <div class="border-t border-dashed border-white/40 my-0.5"></div>
+
+            <div class="text-white text-[9px] sm:text-[10px] leading-snug drop-shadow-[2px_2px_0_#000]">
+                📍 RUA JOSÉ LUIZ MENDES, 121 - <span class="text-green-400">PAQUERÊ</span>
+            </div>
+
+            <div class="flex gap-1.5 justify-center pt-0.5 flex-wrap">
+                <button onclick="copyAddress()" class="bg-blue-600 hover:bg-blue-500 text-white border-2 border-black rounded-lg px-2 py-1 text-[7px] shadow-[2px_2px_0_#000] active:translate-y-0.5">
+                    📋 COPIAR LOCAL
+                </button>
+                <button onclick="abrirModalConfirmar()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold border-2 border-black rounded-lg px-2 py-1 text-[7px] shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-pulse inline-block">
+                    ✅ CONFIRMAR PRESENÇA
+                </button>
+                <button id="playMiniGameBtn" onclick="openMiniGame()" class="hidden bg-yellow-400 hover:bg-yellow-300 text-black font-bold border-2 border-black rounded-lg px-2 py-1 text-[7px] shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-bounce">
+                    🕹️ JOGAR BABY ETHAN
+                </button>
+            </div>
+        </div>
+
+        <!-- Botões START e MENU -->
+        <div class="flex gap-2 w-full justify-center mt-0.5">
+            <button onclick="abrirModalConfirmar()" class="retro-btn retro-btn-green flex-1 py-2 px-1 text-[8px]">
+                <div class="flex flex-col items-center leading-tight">
+                    <span>▶ START</span>
+                    <span class="text-[6px] text-yellow-200 mt-0.5">CONFIRMAR PRESENÇA</span>
+                </div>
+            </button>
+            <button onclick="navigatePage(2)" class="retro-btn retro-btn-red flex-1 py-2 px-1 text-[8px]">
+                <div class="flex flex-col items-center leading-tight">
+                    <span>🎁 MENU</span>
+                    <span class="text-[6px] text-yellow-200 mt-0.5">SUGESTÃO PRESENTES</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PÁGINA 2: SUGESTÃO DE PRESENTES
+    =========================================== -->
+    <div id="page2" class="page-view">
+        
+        <div class="text-center mt-1">
+            <div class="mario-logo text-xl sm:text-2xl">
+                <span style="color:#fbd000">S</span>
+                <span style="color:#e52521">U</span>
+                <span style="color:#43b047">G</span>
+                <span style="color:#049cd8">E</span>
+                <span style="color:#fbd000">S</span>
+                <span style="color:#e52521">T</span>
+                <span style="color:#43b047">Ã</span>
+                <span style="color:#049cd8">O</span>
+            </div>
+            <div class="text-white text-xs mt-1.5 drop-shadow-[2px_2px_0_#000]">
+                🎁 DE PRESENTE 🎁
+            </div>
+        </div>
+
+        <!-- Lista de Presentes com Blocos ? -->
+        <div class="w-full space-y-3 my-2">
+            <!-- Item 1: Roupas -->
+            <div onclick="hitGiftItem(this, '👕 ROUPAS TAM 1 OU 2')" class="retro-card p-3 flex items-center gap-3.5 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
+                <div class="mini-q">?</div>
+                <div class="text-left">
+                    <div class="text-white text-[11px] sm:text-xs drop-shadow-[2px_2px_0_#000]">👕 ROUPAS</div>
+                    <div class="text-yellow-300 text-[10px] mt-1">TAM 1 OU 2</div>
+                </div>
+            </div>
+
+            <!-- Item 2: Sapato -->
+            <div onclick="hitGiftItem(this, '👟 SAPATO TAM 22/23')" class="retro-card p-3 flex items-center gap-3.5 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
+                <div class="mini-q">?</div>
+                <div class="text-left">
+                    <div class="text-white text-[11px] sm:text-xs drop-shadow-[2px_2px_0_#000]">👟 SAPATO</div>
+                    <div class="text-yellow-300 text-[10px] mt-1">TAM 22/23</div>
+                </div>
+            </div>
+
+            <!-- Item 3: Brinquedos / Livros -->
+            <div onclick="hitGiftItem(this, '🦖 BRINQUEDOS E LIVROS!')" class="retro-card p-3 flex items-center gap-3.5 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
+                <div class="mini-q">?</div>
+                <div class="text-left">
+                    <div class="text-white text-[11px] sm:text-xs drop-shadow-[2px_2px_0_#000]">🦖 BRINQUEDOS / LIVROS</div>
+                    <div class="text-green-400 text-[9px] mt-1">EDUCATIVOS / 1 ANINHO</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ícones Decorativos -->
+        <div class="flex items-center justify-center gap-5 text-2xl filter drop-shadow-[2px_2px_0_#000]">
+            <span class="bounce-icon" onclick="playPowerUpSound()">🍄</span>
+            <span class="bounce-icon" onclick="play1UpSound()">⭐</span>
+            <span class="bounce-icon" onclick="playJumpSound()">🦖</span>
+        </div>
+
+        <!-- Botões Voltar e Confirmar Presença -->
+        <div class="w-full flex flex-col gap-2 mt-1">
+            <button onclick="abrirModalConfirmar()" class="retro-btn retro-btn-green w-full py-3 text-[10px]">
+                ✅ CONFIRMAR PRESENÇA
+            </button>
+            <button onclick="navigatePage(1)" class="retro-btn retro-btn-yellow w-full py-2.5 text-[10px]">
+                ⬅ VOLTAR AO INÍCIO
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL: FORMULÁRIO DE CONFIRMAÇÃO DE PRESENÇA
+    =========================================== -->
+    <div id="modalConfirmar" class="hidden absolute inset-0 z-50 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-3">
+        <div class="retro-card w-full max-w-sm p-4 text-center border-4 border-yellow-400 flex flex-col items-center space-y-3">
+            <div class="flex justify-between items-center w-full px-1">
+                <span class="text-yellow-300 text-[10px] drop-shadow-[2px_2px_0_#000]">🍄 CONFIRMAR PRESENÇA</span>
+                <button type="button" onclick="fecharModalConfirmar()" class="text-white text-base hover:text-red-400 active:scale-90">✖</button>
+            </div>
+
+            <div class="text-[8px] text-white/90 leading-relaxed text-left w-full">
+                Preencha os dados abaixo para confirmar a presença da sua família na festa do Ethan:
+            </div>
+
+            <!-- Campos -->
+            <div class="w-full space-y-2.5 text-left">
+                <div>
+                    <label class="text-[8px] text-yellow-300 block mb-1">SEU NOME OU DA FAMÍLIA:</label>
+                    <input type="text" id="confNome" placeholder="Ex: Lucas e Mariana" autocomplete="off" class="w-full bg-[#1a1a2e] border-2 border-white rounded-lg p-2 text-white text-[10px] focus:outline-none focus:border-yellow-400">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-[8px] text-green-300 block mb-1">👨 ADULTOS:</label>
+                        <div class="flex items-center gap-1 bg-[#1a1a2e] border-2 border-white rounded-lg p-1">
+                            <button type="button" onclick="ajustarContador('confAdultos', -1)" class="w-6 h-6 bg-red-600 rounded text-white text-xs font-bold flex items-center justify-center active:scale-90">-</button>
+                            <input type="number" id="confAdultos" value="2" min="1" max="15" class="w-full bg-transparent text-center text-white text-[11px] font-bold outline-none" readonly>
+                            <button type="button" onclick="ajustarContador('confAdultos', 1)" class="w-6 h-6 bg-green-600 rounded text-white text-xs font-bold flex items-center justify-center active:scale-90">+</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[8px] text-cyan-300 block mb-1">🧒 CRIANÇAS:</label>
+                        <div class="flex items-center gap-1 bg-[#1a1a2e] border-2 border-white rounded-lg p-1">
+                            <button type="button" onclick="ajustarContador('confCriancas', -1)" class="w-6 h-6 bg-red-600 rounded text-white text-xs font-bold flex items-center justify-center active:scale-90">-</button>
+                            <input type="number" id="confCriancas" value="0" min="0" max="15" class="w-full bg-transparent text-center text-white text-[11px] font-bold outline-none" readonly>
+                            <button type="button" onclick="ajustarContador('confCriancas', 1)" class="w-6 h-6 bg-green-600 rounded text-white text-xs font-bold flex items-center justify-center active:scale-90">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-[8px] text-yellow-300 block mb-1">💌 RECADO PRO ETHAN (OPCIONAL):</label>
+                    <input type="text" id="confMensagem" placeholder="Ex: Parabéns lindo! Estaremos lá!" autocomplete="off" class="w-full bg-[#1a1a2e] border-2 border-white rounded-lg p-2 text-white text-[9px] focus:outline-none focus:border-yellow-400">
+                </div>
+            </div>
+
+            <!-- Botão de Ação -->
+            <div class="flex flex-col gap-2 w-full pt-1">
+                <button type="button" id="btnSalvarConfirmacao" onclick="enviarConfirmacao()" class="retro-btn retro-btn-green w-full py-2.5 text-[8.5px]">
+                    <span id="btnConfText">✅ CONFIRMAR & AVISAR NO ZAP</span>
+                </button>
+                <button type="button" onclick="fecharModalConfirmar()" class="text-white/70 hover:text-white text-[8px] py-1">
+                    Voltar ao convite
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL MINIGAME SECRETO: SUPER BABY ETHAN
+    =========================================== -->
+    <div id="miniGameModal" class="hidden absolute inset-0 z-50 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-3">
+        <div class="retro-card w-full max-w-sm p-3 text-center border-4 border-yellow-400 flex flex-col items-center space-y-2">
+            <div class="flex justify-between items-center w-full px-1">
+                <span class="text-yellow-300 text-[10px] drop-shadow-[2px_2px_0_#000]">🕹️ SUPER BABY ETHAN</span>
+                <span class="text-green-400 text-[10px] drop-shadow-[2px_2px_0_#000]">PTS: <span id="gameScore">0</span></span>
+            </div>
+
+            <div class="text-[8px] text-white/90">
+                TOQUE NA TELA OU NO BOTÃO PARA O ETHAN PULAR!
+            </div>
+
+            <canvas id="ethangameCanvas" width="300" height="200" class="w-full h-auto"></canvas>
+
+            <div class="flex gap-2 w-full">
+                <button onpointerdown="jumpBabyEthan(event)" class="retro-btn retro-btn-green flex-1 py-2.5 text-[9px]">
+                    ⬆️ PULAR!
+                </button>
+                <button onclick="closeMiniGame()" class="retro-btn retro-btn-red py-2.5 px-3 text-[9px]">
+                    ✖ SAIR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cenário Inferior (Cano Verde do Mario e Colina) -->
+    <div class="scenery flex justify-between items-end px-4">
+        <!-- Colina Verde Clássica -->
+        <svg width="90" height="55" viewBox="0 0 90 55" fill="none">
+            <path d="M5 55 C5 20, 85 20, 85 55 Z" fill="#00a800" stroke="#000" stroke-width="3.5"/>
+            <circle cx="35" cy="38" r="3" fill="#000"/>
+            <circle cx="55" cy="38" r="3" fill="#000"/>
+        </svg>
+
+        <!-- Cano Verde Clássico -->
+        <svg width="58" height="64" viewBox="0 0 58 64" fill="none">
+            <rect x="7" y="22" width="44" height="42" fill="#00a800" stroke="#000" stroke-width="3.5"/>
+            <rect x="13" y="24" width="8" height="38" fill="#58f858"/>
+            <rect x="2" y="4" width="54" height="18" rx="2" fill="#00a800" stroke="#000" stroke-width="3.5"/>
+            <rect x="9" y="6" width="10" height="14" fill="#58f858"/>
+        </svg>
+    </div>
+
+    <!-- Chão de Tijolos -->
+    <div class="brick-ground">
+        <div class="grass-top"></div>
+        <div class="flex items-center gap-2 text-[9px] text-white/95 bg-black/75 px-3 py-1 rounded-full border border-white/40 drop-shadow-[1px_1px_0_#000]">
+            <span>🎮 ETHAN EMERSON • WORLD 1-1</span>
+            <a href="painel.html" title="Painel da Família (Ver quem confirmou)" class="text-yellow-300 text-[10px] ml-1 hover:scale-125 transition-transform no-underline">👑</a>
+        </div>
+    </div>
+
+    <!-- Caixa de Mensagem Retrô (Toast) -->
+    <div id="toastMsg">ENDEREÇO COPIADO!</div>
+</div>
+
+<!-- ==========================================
+     SINTETIZADOR DE SOM 8-BIT & LÓGICA DO JOGO
+=========================================== -->
+<script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmXyjnVs5uH41a_9bddnNfIn-M2KMU4arwHreAlRkB0DFw3ziMLeR5MOVRarQy_4r/exec';
+    const SPREADSHEET_ID = '10OhPoBiRADtvGNBFG46NIgVrWUzJCVDoscS_Po3ttXs';
+    const WHATSAPP_NUMERO = '5518996844324';
+
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let melodyTimer = null;
+    let coins = 0;
+    let blockClicks = 0;
+
+    function initAudio() {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playNote(freq, duration, delay = 0, type = 'square', volume = 0.1) {
+        if (!freq) return;
+        initAudio();
+        setTimeout(() => {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }, delay);
+    }
+
+    function playCoinSound() {
+        playNote(987.77, 0.08, 0, 'square', 0.14);
+        playNote(1318.51, 0.38, 80, 'square', 0.14);
+    }
+
+    function play1UpSound() {
+        const notes = [329.63, 392.00, 659.25, 523.25, 587.33, 783.99];
+        notes.forEach((f, i) => playNote(f, 0.11, i * 110, 'square', 0.13));
+    }
+
+    function playPowerUpSound() {
+        const notes = [330, 392, 659, 523, 587, 784, 523, 587, 659, 784, 1046];
+        notes.forEach((f, i) => playNote(f, 0.07, i * 65, 'triangle', 0.16));
+    }
+
+    function playJumpSound() {
+        initAudio();
+        try {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(620, audioCtx.currentTime + 0.22);
+
+            gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.22);
+        } catch (e) {}
+    }
+
+    const FULL_MARIO_DURATION = 25200;
+    let activeNoteTimeouts = [];
+
+    function clearMelodyTimeouts() {
+        activeNoteTimeouts.forEach(t => clearTimeout(t));
+        activeNoteTimeouts = [];
+    }
+
+    function playMarioMelody() {
+        clearMelodyTimeouts();
+
+        const C4 = 261.63, D4 = 293.66, E4 = 329.63, F4 = 349.23, G4 = 392.00, Gs4 = 415.30, A4 = 440.00, Bb4 = 466.16, B4 = 493.88;
+        const C5 = 523.25, Cs5 = 554.37, D5 = 587.33, Ds5 = 622.25, E5 = 659.25, F5 = 698.46, Fs5 = 739.99, G5 = 783.99, Gs5 = 830.61, A5 = 880.00, Bb5 = 932.33, B5 = 987.77, C6 = 1046.50;
+
+        const melody = [
+            { f: E5, d: 0.12, t: 0 }, { f: E5, d: 0.12, t: 150 }, { f: E5, d: 0.12, t: 450 }, { f: C5, d: 0.12, t: 600 },
+            { f: E5, d: 0.15, t: 750 }, { f: G5, d: 0.25, t: 1050 }, { f: G4, d: 0.25, t: 1500 },
+            { f: C5, d: 0.18, t: 1950 }, { f: G4, d: 0.18, t: 2400 }, { f: E4, d: 0.18, t: 2850 },
+            { f: A4, d: 0.15, t: 3300 }, { f: B4, d: 0.15, t: 3600 }, { f: Bb4, d: 0.12, t: 3900 }, { f: A4, d: 0.18, t: 4050 },
+            { f: G4, d: 0.14, t: 4350 }, { f: E5, d: 0.14, t: 4550 }, { f: G5, d: 0.14, t: 4750 }, { f: A5, d: 0.18, t: 4950 },
+            { f: F5, d: 0.14, t: 5250 }, { f: G5, d: 0.14, t: 5400 }, { f: E5, d: 0.18, t: 5700 }, { f: C5, d: 0.14, t: 6000 },
+            { f: D5, d: 0.14, t: 6150 }, { f: B4, d: 0.20, t: 6300 },
+            { f: C5, d: 0.18, t: 6750 }, { f: G4, d: 0.18, t: 7200 }, { f: E4, d: 0.18, t: 7650 },
+            { f: A4, d: 0.15, t: 8100 }, { f: B4, d: 0.15, t: 8400 }, { f: Bb4, d: 0.12, t: 8700 }, { f: A4, d: 0.18, t: 8850 },
+            { f: G4, d: 0.14, t: 9150 }, { f: E5, d: 0.14, t: 9350 }, { f: G5, d: 0.14, t: 9550 }, { f: A5, d: 0.18, t: 9750 },
+            { f: F5, d: 0.14, t: 10050 }, { f: G5, d: 0.14, t: 10200 }, { f: E5, d: 0.18, t: 10500 }, { f: C5, d: 0.14, t: 10800 },
+            { f: D5, d: 0.14, t: 10950 }, { f: B4, d: 0.20, t: 11100 }
+        ];
+
+        melody.forEach(note => {
+            const timerId = setTimeout(() => {
+                if (isMusicPlaying) {
+                    playNote(note.f, note.d, 0, 'square', 0.08);
+                    playNote(note.f / 2, note.d * 0.9, 0, 'triangle', 0.05);
+                }
+            }, note.t);
+            activeNoteTimeouts.push(timerId);
+        });
+    }
+
+    function toggleMusic() {
+        initAudio();
+        const icon = document.getElementById('musicIcon');
+        const text = document.getElementById('musicText');
+
+        if (!isMusicPlaying) {
+            isMusicPlaying = true;
+            icon.innerText = '🔊';
+            text.innerText = 'SOM: ON';
+            playMarioMelody();
+            melodyTimer = setInterval(() => {
+                if (isMusicPlaying) playMarioMelody();
+            }, FULL_MARIO_DURATION);
+        } else {
+            isMusicPlaying = false;
+            icon.innerText = '🔇';
+            text.innerText = 'SOM: OFF';
+            clearInterval(melodyTimer);
+            clearMelodyTimeouts();
+        }
+    }
+
+    function hitQuestionBlock(blockEl) {
+        if (!isMusicPlaying) toggleMusic();
+        playCoinSound();
+
+        coins++;
+        blockClicks++;
+        document.getElementById('coinCounter').innerText = coins < 10 ? '0' + coins : coins;
+
+        const hintEl = document.getElementById('secretHint');
+        if (blockClicks < 10) {
+            hintEl.innerText = `(${blockClicks}/10 🎮)`;
+        } else {
+            hintEl.innerText = `🎮 LIBERADO!`;
+        }
+
+        blockEl.classList.remove('bump');
+        void blockEl.offsetWidth;
+        blockEl.classList.add('bump');
+
+        const coin = document.createElement('div');
+        coin.className = 'pop-coin';
+        blockEl.appendChild(coin);
+        setTimeout(() => coin.remove(), 650);
+
+        if (blockClicks === 10) {
+            play1UpSound();
+            showToast('🎉 MINIGAME DO ETHAN DESBLOQUEADO!');
+            document.getElementById('playMiniGameBtn').classList.remove('hidden');
+            document.getElementById('blockSubtext').innerText = '▲ TOQUE PARA JOGAR COM O ETHAN! ▲';
+            setTimeout(() => openMiniGame(), 450);
+        } else if (blockClicks > 10 && blockClicks % 10 === 0) {
+            openMiniGame();
+        }
+    }
+
+    // ==========================================
+    // SISTEMA DE CONFIRMAÇÃO DE PRESENÇA
+    // ==========================================
+    function abrirModalConfirmar() {
+        playCoinSound();
+        const modal = document.getElementById('modalConfirmar');
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            const input = document.getElementById('confNome');
+            if (input) input.focus();
+        }, 150);
+    }
+
+    function fecharModalConfirmar() {
+        playCoinSound();
+        document.getElementById('modalConfirmar').classList.add('hidden');
+    }
+
+    function ajustarContador(id, delta) {
+        playCoinSound();
+        const input = document.getElementById(id);
+        let val = parseInt(input.value) || 0;
+        val += delta;
+        const min = parseInt(input.min) || 0;
+        const max = parseInt(input.max) || 20;
+        if (val < min) val = min;
+        if (val > max) val = max;
+        input.value = val;
+    }
+
+    async function enviarConfirmacao() {
+        const nomeInput = document.getElementById('confNome');
+        const adultosInput = document.getElementById('confAdultos');
+        const criancasInput = document.getElementById('confCriancas');
+        const mensagemInput = document.getElementById('confMensagem');
+        const btn = document.getElementById('btnSalvarConfirmacao');
+        const btnText = document.getElementById('btnConfText');
+
+        const nome = (nomeInput.value || '').trim();
+        const adultos = parseInt(adultosInput.value) || 1;
+        const criancas = parseInt(criancasInput.value) || 0;
+        const mensagem = (mensagemInput.value || '').trim();
+        const total = adultos + criancas;
+
+        if (!nome) {
+            playPowerUpSound();
+            showToast('⚠️ DIGITE SEU NOME OU DA FAMÍLIA!');
+            nomeInput.focus();
+            return;
+        }
+
+        btn.disabled = true;
+        btnText.innerText = 'SALVANDO... ⏳';
+
+        // 1. Salva na Planilha do Google na Nuvem
+        const code = `
+        (function() {
+            var ss = SpreadsheetApp.openById('${SPREADSHEET_ID}');
+            var sheet = ss.getSheetByName('Convite_Ethan');
+            if (!sheet) {
+                sheet = ss.insertSheet('Convite_Ethan');
+                sheet.getRange(1, 1, 1, 7).setValues([['Data/Hora', 'Nome / Família', 'Adultos', 'Crianças', 'Total', 'Mensagem', 'Status']]);
+                sheet.getRange(1, 1, 1, 7).setFontWeight('bold').setBackground('#fbd000');
+            }
+            sheet.appendRow([
+                new Date().toLocaleString('pt-BR'),
+                ${JSON.stringify(nome)},
+                ${adultos},
+                ${criancas},
+                ${total},
+                ${JSON.stringify(mensagem || 'Confirmado com sucesso!')},
+                'Confirmado ✅'
+            ]);
+            return { ok: true };
+        })()
+        `;
+
+        try {
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'execute_command', code })
+            }).catch(console.warn);
+        } catch (e) {
+            console.warn(e);
+        }
+
+        play1UpSound();
+        showToast('🎉 PRESENÇA CONFIRMADA COM SUCESSO!');
+        fecharModalConfirmar();
+
+        // 2. Abre o WhatsApp com texto formatado
+        const textoZap = `🎉 *CONFIRMAÇÃO DE PRESENÇA* 🎂✨%0A%0A` +
+            `Oi! Aqui é o/a *${encodeURIComponent(nome)}*!%0A` +
+            `Estamos confirmando nossa presença no aniversário de 1 ano do *Super Ethan Emerson*! 🍄⭐%0A%0A` +
+            `👨 *Adultos:* ${adultos}%0A` +
+            `🧒 *Crianças:* ${criancas}%0A` +
+            `👥 *Total de pessoas:* ${total}%0A` +
+            (mensagem ? `💌 *Recado:* "${encodeURIComponent(mensagem)}"%0A%0A` : '%0A') +
+            `Nos vemos lá no dia 05/Dezembro às 19h! 🦖🎈`;
+
+        const zapUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${textoZap}`;
+
+        setTimeout(() => {
+            window.open(zapUrl, '_blank');
+            btn.disabled = false;
+            btnText.innerText = '✅ CONFIRMAR & AVISAR NO ZAP';
+        }, 500);
+    }
+
+    // ==========================================
+    // MINIGAME: SUPER BABY ETHAN
+    // ==========================================
+    let gameRunning = false;
+    let gameAnimFrame = null;
+    let gameScore = 0;
+    let gameOverState = false;
+
+    const ethanPlayer = { x: 42, y: 142, vy: 0, width: 38, height: 48, grounded: true, runFrame: 0 };
+    let gameCoins = [];
+    let gameObstacles = [];
+    let gameClouds = [{ x: 40, y: 28 }, { x: 190, y: 45 }];
+
+    function openMiniGame() {
+        playPowerUpSound();
+        document.getElementById('miniGameModal').classList.remove('hidden');
+        startMiniGameLoop();
+    }
+
+    function closeMiniGame() {
+        playCoinSound();
+        gameRunning = false;
+        cancelAnimationFrame(gameAnimFrame);
+        document.getElementById('miniGameModal').classList.add('hidden');
+    }
+
+    function startMiniGameLoop() {
+        const canvas = document.getElementById('ethangameCanvas');
+        ethangameReset();
+        gameRunning = true;
+        canvas.onpointerdown = function(e) { e.preventDefault(); jumpBabyEthan(); };
+        cancelAnimationFrame(gameAnimFrame);
+        updateMiniGame();
+    }
+
+    function ethangameReset() {
+        gameScore = 0;
+        gameOverState = false;
+        ethanPlayer.y = 142;
+        ethanPlayer.vy = 0;
+        ethanPlayer.grounded = true;
+        gameCoins = [{ x: 260, y: 95, collected: false }];
+        gameObstacles = [{ x: 320, type: 'mushroom_goomba' }];
+        document.getElementById('gameScore').innerText = gameScore;
+    }
+
+    function jumpBabyEthan(e) {
+        if (e) e.preventDefault();
+        if (gameOverState) {
+            play1UpSound();
+            ethangameReset();
+            return;
+        }
+        if (ethanPlayer.grounded) {
+            ethanPlayer.vy = -10.8;
+            ethanPlayer.grounded = false;
+            playJumpSound();
+        }
+    }
+
+    function drawBabyEthan(ctx, x, y, frame, isJumping) {
+        ctx.save();
+        ctx.translate(x, y);
+        const legSwing = isJumping ? 4 : Math.sin(frame * 0.35) * 5;
+
+        ctx.fillStyle = '#ffdfc4';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.roundRect(7 - legSwing * 0.4, 34, 9, 12, 4);
+        ctx.fill();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.roundRect(6 - legSwing * 0.4, 43, 12, 6, 3);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.roundRect(21 + legSwing * 0.4, 34, 9, 12, 4);
+        ctx.fill();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.roundRect(21 + legSwing * 0.4, 43, 12, 6, 3);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#e52521';
+        ctx.beginPath();
+        ctx.roundRect(3, 16, 31, 14, 5);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffdfc4';
+        ctx.beginPath();
+        ctx.arc(3, 25, 4.5, 0, Math.PI * 2);
+        ctx.arc(34, 24 - (isJumping ? 4 : 0), 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#1d56d8';
+        ctx.beginPath();
+        ctx.roundRect(6, 20, 25, 17, 4);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillRect(8, 15, 5, 7);
+        ctx.strokeRect(8, 15, 5, 7);
+        ctx.fillRect(24, 15, 5, 7);
+        ctx.strokeRect(24, 15, 5, 7);
+
+        ctx.strokeStyle = '#0f3696';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(13, 24, 11, 7);
+
+        ctx.fillStyle = '#ffd700';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(10.5, 21, 3.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(26.5, 21, 3.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffdfc4';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(19, 8, 11.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(8, 9, 3.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(255, 130, 130, 0.55)';
+        ctx.beginPath();
+        ctx.arc(15, 11, 2.5, 0, Math.PI * 2);
+        ctx.arc(26, 11, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#1a1a1a';
+        ctx.beginPath();
+        ctx.arc(16.5, 7.5, 2, 0, Math.PI * 2);
+        ctx.arc(24, 7.5, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(17, 6.8, 0.7, 0, Math.PI * 2);
+        ctx.arc(24.5, 6.8, 0.7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = '#b55b4c';
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.arc(20.5, 12.2, 2.5, 0.15 * Math.PI, 0.85 * Math.PI);
+        ctx.stroke();
+
+        ctx.fillStyle = '#e52521';
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(18.5, -1, 13.5, 7.5, -0.05, Math.PI, 0);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.roundRect(7, -2, 24, 4.5, 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(19.5, -4.5, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.strokeStyle = '#e52521';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(17, -2.5);
+        ctx.lineTo(18, -6.5);
+        ctx.lineTo(19.5, -4);
+        ctx.lineTo(21, -6.5);
+        ctx.lineTo(22, -2.5);
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    function updateMiniGame() {
+        if (!gameRunning) return;
+        const canvas = document.getElementById('ethangameCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#00a800';
+        ctx.fillRect(0, 188, canvas.width, 6);
+        ctx.fillStyle = '#c84c0c';
+        ctx.fillRect(0, 194, canvas.width, 36);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, 188);
+        ctx.lineTo(canvas.width, 188);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        gameClouds.forEach(c => {
+            if (!gameOverState) c.x -= 0.5;
+            if (c.x < -50) c.x = canvas.width + 20;
+            ctx.beginPath();
+            ctx.arc(c.x, c.y, 12, 0, Math.PI * 2);
+            ctx.arc(c.x + 14, c.y - 4, 14, 0, Math.PI * 2);
+            ctx.arc(c.x + 28, c.y, 11, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        if (!gameOverState) {
+            ethanPlayer.vy += 0.55;
+            ethanPlayer.y += ethanPlayer.vy;
+            if (ethanPlayer.y >= 140) {
+                ethanPlayer.y = 140;
+                ethanPlayer.vy = 0;
+                ethanPlayer.grounded = true;
+            }
+            ethanPlayer.runFrame++;
+
+            gameCoins.forEach(c => {
+                c.x -= 3.2;
+                ctx.fillStyle = '#ffd700';
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, 10, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+
+                if (!c.collected &&
+                    Math.abs((ethanPlayer.x + 18) - c.x) < 24 &&
+                    Math.abs((ethanPlayer.y + 22) - c.y) < 28) {
+                    c.collected = true;
+                    gameScore += 10;
+                    coins++;
+                    document.getElementById('coinCounter').innerText = coins < 10 ? '0' + coins : coins;
+                    document.getElementById('gameScore').innerText = gameScore;
+                    playCoinSound();
+                }
+            });
+
+            if (gameCoins.length && gameCoins[0].x < -20) {
+                gameCoins.shift();
+                gameCoins.push({
+                    x: canvas.width + 40 + Math.random() * 80,
+                    y: 75 + Math.random() * 55,
+                    collected: false
+                });
+            }
+
+            gameObstacles.forEach(obs => {
+                obs.x -= 3.4;
+                ctx.fillStyle = '#00a800';
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.fillRect(obs.x, 160, 26, 28);
+                ctx.strokeRect(obs.x, 160, 26, 28);
+                ctx.fillRect(obs.x - 3, 152, 32, 9);
+                ctx.strokeRect(obs.x - 3, 152, 32, 9);
+
+                if (
+                    ethanPlayer.x + 26 > obs.x &&
+                    ethanPlayer.x + 8 < obs.x + 24 &&
+                    ethanPlayer.y + 44 > 155
+                ) {
+                    gameOverState = true;
+                    playNote(196, 0.3, 0, 'sawtooth', 0.15);
+                }
+            });
+
+            if (gameObstacles.length && gameObstacles[0].x < -35) {
+                gameObstacles.shift();
+                gameScore += 5;
+                document.getElementById('gameScore').innerText = gameScore;
+                gameObstacles.push({
+                    x: canvas.width + 90 + Math.random() * 110
+                });
+            }
+        }
+
+        drawBabyEthan(ctx, ethanPlayer.x, ethanPlayer.y, ethanPlayer.runFrame, !ethanPlayer.grounded);
+
+        if (gameOverState) {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.72)';
+            ctx.fillRect(25, 50, 270, 95);
+            ctx.strokeStyle = '#fbd000';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(25, 50, 270, 95);
+
+            ctx.fillStyle = '#fbd000';
+            ctx.font = '11px "Press Start 2P"';
+            ctx.textAlign = 'center';
+            ctx.fillText('FIM DE FASE!', canvas.width / 2, 82);
+            ctx.fillStyle = '#fff';
+            ctx.font = '8px "Press Start 2P"';
+            ctx.fillText('TOQUE EM PULAR PARA', canvas.width / 2, 108);
+            ctx.fillText('JOGAR DE NOVO! 🍄', canvas.width / 2, 126);
+        }
+
+        gameAnimFrame = requestAnimationFrame(updateMiniGame);
+    }
+
+    function navigatePage(pageNumber) {
+        playCoinSound();
+        document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+        document.getElementById('page' + pageNumber).classList.add('active');
+    }
+
+    function hitGiftItem(el, label) {
+        playCoinSound();
+        coins++;
+        document.getElementById('coinCounter').innerText = coins < 10 ? '0' + coins : coins;
+        showToast(label);
+    }
+
+    function copyAddress() {
+        playCoinSound();
+        const address = "Rua José Luiz Mendes, 121 - Paquerê";
+        const tempInput = document.createElement("textarea");
+        tempInput.value = address;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        showToast("📍 ENDEREÇO COPIADO!");
+    }
+
+    let toastTimeout = null;
+    function showToast(message) {
+        const toast = document.getElementById('toastMsg');
+        toast.innerText = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2200);
+    }
+</script>
+
+</body>
+</html>
