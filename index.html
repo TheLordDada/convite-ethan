@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Super Ethan Emerson • 1 Aninho 🍄⭐</title>
 
     <!-- Meta Tags para Prévia Perfeita no WhatsApp / Redes Sociais -->
@@ -39,39 +42,26 @@
             align-items: center;
             min-height: 100vh;
             min-height: 100dvh;
+            background: linear-gradient(180deg, #5c94fc 0%, #7aa7ff 76%, #00a800 76%, #c84c0c 80%);
         }
 
-        /* Moldura da Tela do Jogo - Mobile First: Ocupa 100% da tela do celular */
+        /* A tela do jogo ocupa 100% da tela em qualquer dispositivo */
         .game-boy-frame {
+            width: 100%;
             width: 100vw;
-            max-width: 100vw;
-            height: 100vh;
+            height: 100%;
             height: 100dvh;
+            max-width: 100vw !important;
+            max-height: 100dvh !important;
             position: relative;
-            background: linear-gradient(180deg, #5c94fc 0%, #7aa7ff 76%, #00a800 76%, #c84c0c 80%);
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
+            background: transparent;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        /* No computador / telas grandes: moldura arcade elegante */
-        @media (min-width: 640px) and (min-height: 680px) {
-            body {
-                background-color: #1a1a2e;
-            }
-            .game-boy-frame {
-                width: 100%;
-                max-width: 440px;
-                height: 94vh;
-                max-height: 880px;
-                border: 6px solid #000;
-                border-radius: 28px;
-                box-shadow: 0 25px 60px rgba(0,0,0,0.8), inset 0 0 0 4px rgba(255,255,255,0.2);
-            }
         }
 
         /* Nuvens Animadas */
@@ -289,8 +279,10 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
             height: 100%;
-            padding: 48px 12px 76px 12px;
+            padding: 56px 14px 84px 14px;
             position: relative;
             z-index: 10;
         }
