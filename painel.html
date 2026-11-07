@@ -195,28 +195,60 @@
             `;
 
             try {
-                const res = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'execute_command', code })
-                });
-
+                const url = `${GOOGLE_SCRIPT_URL}?action=execute_command&code=${encodeURIComponent(code)}`;
+                const res = await fetch(url);
                 const json = await res.json();
                 loading.style.display = 'none';
 
+                let listaNuvem = [];
                 if (json && json.result && Array.isArray(json.result.list)) {
-                    // Ordena pelos mais recentes primeiro
-                    listaConvidadosGlobal = json.result.list.reverse();
+                    listaNuvem = json.result.list;
+                }
+
+                // Mescla com confirmações salvas localmente
+                let listaLocal = [];
+                try {
+                    listaLocal = JSON.parse(localStorage.getItem('confirmacoes_ethan_local') || '[]');
+                } catch (e) {}
+
+                // Combina listas evitando duplicatas por nome aproximado
+                const mapa = new Map();
+                listaNuvem.forEach(c => mapa.set((c.nome || '').trim().toLowerCase(), c));
+                listaLocal.forEach(c => {
+                    const k = (c.nome || '').trim().toLowerCase();
+                    if (!mapa.has(k)) {
+                        mapa.set(k, c);
+                    }
+                });
+
+                listaConvidadosGlobal = Array.from(mapa.values()).reverse();
+
+                if (listaConvidadosGlobal.length > 0) {
                     atualizarEstatisticas(listaConvidadosGlobal);
                     renderizarCards(listaConvidadosGlobal);
                     lblAtualizacao.innerText = 'Atualizado às ' + new Date().toLocaleTimeString('pt-BR');
                 } else {
                     empty.classList.remove('hidden');
+                    atualizarEstatisticas([]);
                 }
             } catch (err) {
                 console.error(err);
                 loading.style.display = 'none';
-                grid.innerHTML = '<div class="text-center text-red-400 py-6">Erro ao conectar com a planilha. Toque em Atualizar.</div>';
+
+                // Tenta exibir pelo menos as salvas localmente se a rede falhar
+                let listaLocal = [];
+                try {
+                    listaLocal = JSON.parse(localStorage.getItem('confirmacoes_ethan_local') || '[]');
+                } catch (e) {}
+
+                if (listaLocal.length > 0) {
+                    listaConvidadosGlobal = listaLocal.reverse();
+                    atualizarEstatisticas(listaConvidadosGlobal);
+                    renderizarCards(listaConvidadosGlobal);
+                    lblAtualizacao.innerText = 'Exibindo cópia local (offline)';
+                } else {
+                    grid.innerHTML = '<div class="text-center text-red-400 py-6">Erro ao conectar com a planilha. Toque em Atualizar.</div>';
+                }
             }
         }
 
