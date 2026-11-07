@@ -42,7 +42,7 @@
             align-items: center;
             min-height: 100vh;
             min-height: 100dvh;
-            background: linear-gradient(180deg, #5c94fc 0%, #7aa7ff 76%, #00a800 76%, #c84c0c 80%);
+            background: linear-gradient(180deg, #5c94fc 0%, #7db0ff 85%, #9bc2ff 100%);
         }
 
         /* A tela do jogo ocupa 100% da tela em qualquer dispositivo */
@@ -276,13 +276,13 @@
         .page-view {
             display: none;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             margin: 0 auto;
             height: 100%;
-            padding: 56px 14px 84px 14px;
+            padding: 50px 14px 84px 14px;
             position: relative;
             z-index: 10;
         }
@@ -369,13 +369,13 @@
 <div class="game-boy-frame">
     
     <!-- Barra Superior de Status / HUD do Jogo -->
-    <div class="absolute top-0 left-0 w-full px-4 pt-3 pb-2 flex justify-between items-center z-30 bg-gradient-to-b from-black/55 to-transparent">
-        <div class="flex items-center gap-2 text-white text-[10px] drop-shadow-[2px_2px_0_#000]">
-            <span class="text-yellow-300">🪙x<span id="coinCounter">00</span></span>
-            <span id="secretHint" class="text-green-400 ml-1 text-[8px]">(0/10 🎮)</span>
+    <div class="absolute top-0 left-0 w-full px-4 pt-3.5 pb-2 flex justify-between items-center z-30 bg-gradient-to-b from-black/60 to-transparent">
+        <div class="flex items-center gap-2 text-white text-xs sm:text-sm drop-shadow-[2px_2px_0_#000]">
+            <span class="text-yellow-300 font-bold">🪙x<span id="coinCounter">00</span></span>
+            <span id="secretHint" class="text-green-400 ml-1 text-[10px]">(0/10 🎮)</span>
         </div>
 
-        <button id="musicBtn" onclick="toggleMusic()" class="bg-black/80 hover:bg-black text-white border-2 border-white rounded-lg px-2.5 py-1.5 text-[9px] flex items-center gap-1.5 shadow-[2px_2px_0_#000] active:translate-y-0.5">
+        <button id="musicBtn" onclick="toggleMusic()" class="bg-black/85 hover:bg-black text-white border-2 border-white rounded-lg px-3.5 py-2 text-[10.5px] sm:text-xs font-bold flex items-center gap-2 shadow-[2px_2px_0_#000] active:translate-y-0.5">
             <span id="musicIcon">🔇</span>
             <span id="musicText">SOM: TOCAR</span>
         </button>
@@ -407,9 +407,9 @@
     <div id="page1" class="page-view active">
         
         <!-- Ícones do tema: Cogumelo, Estrela, Dinossauro -->
-        <div class="flex items-center justify-center gap-5 mt-0.5">
+        <div class="flex items-center justify-center gap-6 mt-1">
             <div class="bounce-icon" onclick="playPowerUpSound(); showToast('🍄 SUPER COGUMELO!')" title="Toque no Cogumelo!">
-                <svg width="36" height="36" viewBox="0 0 36 36">
+                <svg width="44" height="44" viewBox="0 0 36 36">
                     <path d="M6 20 C6 8, 30 8, 30 20 Z" fill="#e52521" stroke="#000" stroke-width="2.5"/>
                     <circle cx="18" cy="12" r="4" fill="#fff"/>
                     <circle cx="10" cy="16" r="3" fill="#fff"/>
@@ -420,46 +420,46 @@
                 </svg>
             </div>
             <div class="bounce-icon" onclick="play1UpSound(); showToast('⭐ INVENCÍVEL! 1 ANINHO!')" title="Toque na Estrela!">
-                <svg width="38" height="38" viewBox="0 0 36 36">
+                <svg width="46" height="46" viewBox="0 0 36 36">
                     <polygon points="18,3 22.5,12.5 33,14 25.5,21.5 27.2,32 18,27 8.8,32 10.5,21.5 3,14 13.5,12.5" fill="#fbd000" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
                 </svg>
             </div>
             <div class="bounce-icon" onclick="playJumpSound(); showToast('🦖 YOSHI DINO!')" title="Toque no Dino!">
-                <span class="text-2xl filter drop-shadow-[2px_2px_0_#000]">🦖</span>
+                <span class="text-3xl filter drop-shadow-[2px_2px_0_#000]">🦖</span>
             </div>
         </div>
 
         <!-- Título SUPER / ETHAN EMERSON / 1 ANINHO Centralizado -->
-        <div class="flex flex-col items-center justify-center text-center my-1.5 w-full px-2 select-none">
+        <div class="flex flex-col items-center justify-center text-center my-2 w-full px-2 select-none">
             <!-- 1. SUPER -->
-            <div class="mario-logo text-2xl sm:text-3xl tracking-widest leading-none">
+            <div class="mario-logo text-3xl sm:text-4xl tracking-widest leading-none">
                 <span style="color:#e52521">S</span><span style="color:#049cd8">U</span><span style="color:#fbd000">P</span><span style="color:#43b047">E</span><span style="color:#e52521">R</span>
             </div>
             <!-- 2. ETHAN EMERSON -->
-            <div class="mario-logo text-base sm:text-xl tracking-wider mt-2 leading-none">
+            <div class="mario-logo text-lg sm:text-2xl tracking-wider mt-2.5 leading-none">
                 <span style="color:#43b047">E</span><span style="color:#fbd000">T</span><span style="color:#e52521">H</span><span style="color:#049cd8">A</span><span style="color:#fbd000">N</span>&nbsp;&nbsp;<span style="color:#e52521">E</span><span style="color:#049cd8">M</span><span style="color:#43b047">E</span><span style="color:#fbd000">R</span><span style="color:#e52521">S</span><span style="color:#43b047">O</span><span style="color:#049cd8">N</span>
             </div>
             <!-- 3. 1 ANINHO -->
-            <div class="mt-2.5 flex items-center justify-center">
-                <div class="bg-black/90 border-2 border-yellow-400 rounded-full px-4 py-1.5 text-xs text-yellow-300 shadow-[3px_3px_0_#000] flex items-center gap-2 font-bold tracking-widest">
+            <div class="mt-3 flex items-center justify-center">
+                <div class="bg-black/90 border-2 border-yellow-400 rounded-full px-5 py-2 text-xs sm:text-sm text-yellow-300 shadow-[3px_3px_0_#000] flex items-center gap-2 font-bold tracking-widest">
                     <span>🍄</span> <span>⭐</span> <span>1 ANINHO</span> <span>🦖</span> <span>⭐</span>
                 </div>
             </div>
         </div>
 
-        <!-- Bloco de Interrogação Interativo Compacto -->
-        <div class="relative flex flex-col items-center my-1">
-            <div id="mainQBlock" class="q-block" style="width:68px; height:68px; font-size:34px;" onclick="hitQuestionBlock(this)">
+        <!-- Bloco de Interrogação Interativo -->
+        <div class="relative flex flex-col items-center my-1.5">
+            <div id="mainQBlock" class="q-block" style="width:84px; height:84px; font-size:44px;" onclick="hitQuestionBlock(this)">
                 ?
             </div>
-            <span id="blockSubtext" class="text-[9px] sm:text-[10px] text-white mt-1.5 drop-shadow-[1px_1px_0_#000] animate-pulse font-bold">
+            <span id="blockSubtext" class="text-[10px] sm:text-xs text-white mt-2 drop-shadow-[1px_1px_0_#000] animate-pulse font-bold">
                 ▲ TOQUE 10X PARA SURPRESA! ▲
             </span>
         </div>
 
         <!-- Painel com Data, Hora, Local e Botões -->
-        <div class="retro-card w-full p-3.5 text-center space-y-2">
-            <div class="flex justify-center items-center gap-2 text-yellow-300 text-xs sm:text-sm drop-shadow-[2px_2px_0_#000]">
+        <div class="retro-card w-full p-4 text-center space-y-2.5">
+            <div class="flex justify-center items-center gap-2 text-yellow-300 text-sm sm:text-base drop-shadow-[2px_2px_0_#000] font-bold">
                 <span>📅 05/DEZEMBRO</span>
                 <span>•</span>
                 <span>⏰ 19H</span>
@@ -467,35 +467,35 @@
 
             <div class="border-t border-dashed border-white/40 my-1"></div>
 
-            <div class="text-white text-[10.5px] sm:text-xs leading-snug drop-shadow-[2px_2px_0_#000]">
+            <div class="text-white text-xs sm:text-sm leading-relaxed drop-shadow-[2px_2px_0_#000]">
                 📍 RUA JOSÉ LUIZ MENDES, 121 - <span class="text-green-400 font-bold">PAQUERÊ</span>
             </div>
 
-            <div class="flex gap-2 justify-center pt-1 flex-wrap">
-                <button onclick="copyAddress()" class="bg-blue-600 hover:bg-blue-500 text-white border-2 border-black rounded-lg px-2.5 py-1.5 text-[8.5px] sm:text-[9.5px] shadow-[2px_2px_0_#000] active:translate-y-0.5">
+            <div class="flex gap-2 justify-center pt-1.5 flex-wrap">
+                <button onclick="copyAddress()" class="bg-blue-600 hover:bg-blue-500 text-white border-2 border-black rounded-lg px-3 py-2 text-[10px] sm:text-xs shadow-[2px_2px_0_#000] active:translate-y-0.5 font-bold">
                     📋 COPIAR LOCAL
                 </button>
-                <button onclick="abrirModalConfirmar()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold border-2 border-black rounded-lg px-2.5 py-1.5 text-[8.5px] sm:text-[9.5px] shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-pulse inline-block">
+                <button onclick="abrirModalConfirmar()" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold border-2 border-black rounded-lg px-3 py-2 text-[10px] sm:text-xs shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-pulse inline-block">
                     ✅ CONFIRMAR PRESENÇA
                 </button>
-                <button id="playMiniGameBtn" onclick="openMiniGame()" class="hidden bg-yellow-400 hover:bg-yellow-300 text-black font-bold border-2 border-black rounded-lg px-2.5 py-1.5 text-[8.5px] sm:text-[9.5px] shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-bounce">
+                <button id="playMiniGameBtn" onclick="openMiniGame()" class="hidden bg-yellow-400 hover:bg-yellow-300 text-black font-bold border-2 border-black rounded-lg px-3 py-2 text-[10px] sm:text-xs shadow-[2px_2px_0_#000] active:translate-y-0.5 animate-bounce">
                     🕹️ JOGAR BABY ETHAN
                 </button>
             </div>
         </div>
 
         <!-- Botões START e MENU -->
-        <div class="flex gap-2.5 w-full justify-center mt-1">
-            <button onclick="abrirModalConfirmar()" class="retro-btn retro-btn-green flex-1 py-3 px-2 text-[10px] sm:text-xs">
+        <div class="flex gap-3 w-full justify-center my-1">
+            <button onclick="abrirModalConfirmar()" class="retro-btn retro-btn-green flex-1 py-3.5 px-3 text-xs sm:text-sm">
                 <div class="flex flex-col items-center leading-tight">
                     <span>▶ START</span>
-                    <span class="text-[7.5px] sm:text-[8.5px] text-yellow-200 mt-0.5">CONFIRMAR PRESENÇA</span>
+                    <span class="text-[8.5px] sm:text-[9.5px] text-yellow-200 mt-1">CONFIRMAR PRESENÇA</span>
                 </div>
             </button>
-            <button onclick="navigatePage(2)" class="retro-btn retro-btn-red flex-1 py-3 px-2 text-[10px] sm:text-xs">
+            <button onclick="navigatePage(2)" class="retro-btn retro-btn-red flex-1 py-3.5 px-3 text-xs sm:text-sm">
                 <div class="flex flex-col items-center leading-tight">
                     <span>🎁 MENU</span>
-                    <span class="text-[7.5px] sm:text-[8.5px] text-yellow-200 mt-0.5">SUGESTÃO PRESENTES</span>
+                    <span class="text-[8.5px] sm:text-[9.5px] text-yellow-200 mt-1">SUGESTÃO PRESENTES</span>
                 </div>
             </button>
         </div>
@@ -506,8 +506,8 @@
     =========================================== -->
     <div id="page2" class="page-view">
         
-        <div class="text-center mt-1">
-            <div class="mario-logo text-xl sm:text-2xl">
+        <div class="text-center mt-2">
+            <div class="mario-logo text-2xl sm:text-3xl">
                 <span style="color:#fbd000">S</span>
                 <span style="color:#e52521">U</span>
                 <span style="color:#43b047">G</span>
@@ -517,54 +517,54 @@
                 <span style="color:#43b047">Ã</span>
                 <span style="color:#049cd8">O</span>
             </div>
-            <div class="text-white text-xs mt-1.5 drop-shadow-[2px_2px_0_#000]">
+            <div class="text-white text-sm sm:text-base mt-2 drop-shadow-[2px_2px_0_#000] font-bold">
                 🎁 DE PRESENTE 🎁
             </div>
         </div>
 
         <!-- Lista de Presentes com Blocos ? -->
-        <div class="w-full space-y-3 my-2">
+        <div class="w-full space-y-3.5 my-2">
             <!-- Item 1: Roupas -->
-            <div onclick="hitGiftItem(this, '👕 ROUPAS TAM 1 OU 2')" class="retro-card p-3 flex items-center gap-3.5 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
-                <div class="mini-q">?</div>
+            <div onclick="hitGiftItem(this, '👕 ROUPAS TAM 1 OU 2')" class="retro-card p-3.5 flex items-center gap-4 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
+                <div class="mini-q" style="min-width:52px; height:52px; font-size:26px;">?</div>
                 <div class="text-left">
-                    <div class="text-white text-[11px] sm:text-xs drop-shadow-[2px_2px_0_#000]">👕 ROUPAS</div>
-                    <div class="text-yellow-300 text-[10px] mt-1">TAM 1 OU 2</div>
+                    <div class="text-white text-xs sm:text-sm drop-shadow-[2px_2px_0_#000] font-bold">👕 ROUPAS</div>
+                    <div class="text-yellow-300 text-[11px] sm:text-xs mt-1">TAMANHO 1 OU 2</div>
                 </div>
             </div>
 
             <!-- Item 2: Sapato -->
-            <div onclick="hitGiftItem(this, '👟 SAPATO TAM 22/23')" class="retro-card p-3 flex items-center gap-3.5 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
-                <div class="mini-q">?</div>
+            <div onclick="hitGiftItem(this, '👟 SAPATO TAM 22/23')" class="retro-card p-3.5 flex items-center gap-4 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
+                <div class="mini-q" style="min-width:52px; height:52px; font-size:26px;">?</div>
                 <div class="text-left">
-                    <div class="text-white text-[11px] sm:text-xs drop-shadow-[2px_2px_0_#000]">👟 SAPATO</div>
-                    <div class="text-yellow-300 text-[10px] mt-1">TAM 22/23</div>
+                    <div class="text-white text-xs sm:text-sm drop-shadow-[2px_2px_0_#000] font-bold">👟 SAPATO</div>
+                    <div class="text-yellow-300 text-[11px] sm:text-xs mt-1">NÚMERO 22/23</div>
                 </div>
             </div>
 
             <!-- Item 3: Brinquedos / Livros -->
-            <div onclick="hitGiftItem(this, '🦖 BRINQUEDOS E LIVROS!')" class="retro-card p-3 flex items-center gap-3.5 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
-                <div class="mini-q">?</div>
+            <div onclick="hitGiftItem(this, '🦖 BRINQUEDOS E LIVROS!')" class="retro-card p-3.5 flex items-center gap-4 cursor-pointer hover:border-yellow-400 transition-transform active:scale-95">
+                <div class="mini-q" style="min-width:52px; height:52px; font-size:26px;">?</div>
                 <div class="text-left">
-                    <div class="text-white text-[11px] sm:text-xs drop-shadow-[2px_2px_0_#000]">🦖 BRINQUEDOS / LIVROS</div>
-                    <div class="text-green-400 text-[9px] mt-1">EDUCATIVOS / 1 ANINHO</div>
+                    <div class="text-white text-xs sm:text-sm drop-shadow-[2px_2px_0_#000] font-bold">🦖 BRINQUEDOS / LIVROS</div>
+                    <div class="text-green-400 text-[10.5px] sm:text-xs mt-1">EDUCATIVOS / 1 ANINHO</div>
                 </div>
             </div>
         </div>
 
         <!-- Ícones Decorativos -->
-        <div class="flex items-center justify-center gap-5 text-2xl filter drop-shadow-[2px_2px_0_#000]">
+        <div class="flex items-center justify-center gap-6 text-3xl filter drop-shadow-[2px_2px_0_#000]">
             <span class="bounce-icon" onclick="playPowerUpSound()">🍄</span>
             <span class="bounce-icon" onclick="play1UpSound()">⭐</span>
             <span class="bounce-icon" onclick="playJumpSound()">🦖</span>
         </div>
 
         <!-- Botões Voltar e Confirmar Presença -->
-        <div class="w-full flex flex-col gap-2 mt-1">
-            <button onclick="abrirModalConfirmar()" class="retro-btn retro-btn-green w-full py-3 text-[10px]">
+        <div class="w-full flex flex-col gap-2.5 mt-1">
+            <button onclick="abrirModalConfirmar()" class="retro-btn retro-btn-green w-full py-3.5 text-xs sm:text-sm font-bold">
                 ✅ CONFIRMAR PRESENÇA
             </button>
-            <button onclick="navigatePage(1)" class="retro-btn retro-btn-yellow w-full py-2.5 text-[10px]">
+            <button onclick="navigatePage(1)" class="retro-btn retro-btn-yellow w-full py-3 text-xs sm:text-sm font-bold">
                 ⬅ VOLTAR AO INÍCIO
             </button>
         </div>
