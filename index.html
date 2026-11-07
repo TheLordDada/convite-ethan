@@ -360,6 +360,8 @@
 </head>
 <body>
 
+<audio id="marioAudio" src="mario-theme.mp3" preload="auto" loop></audio>
+
 <div class="game-boy-frame">
     
     <!-- Barra Superior de Status / HUD do Jogo -->
@@ -423,17 +425,21 @@
             </div>
         </div>
 
-        <!-- Título SUPER ETHAN EMERSON -->
-        <div class="text-center my-0 w-full px-1">
-            <div class="mario-logo text-base sm:text-xl tracking-wider">
-                <span style="color:#e52521">S</span><span style="color:#43b047">U</span><span style="color:#fbd000">P</span><span style="color:#049cd8">E</span><span style="color:#e52521">R</span>&nbsp;
-                <span style="color:#43b047">E</span><span style="color:#fbd000">T</span><span style="color:#e52521">H</span><span style="color:#049cd8">A</span><span style="color:#fbd000">N</span>
+        <!-- Título SUPER / ETHAN EMERSON / 1 ANINHO Centralizado -->
+        <div class="flex flex-col items-center justify-center text-center my-1 w-full px-1 select-none">
+            <!-- 1. SUPER -->
+            <div class="mario-logo text-xl sm:text-2xl tracking-widest leading-none">
+                <span style="color:#e52521">S</span><span style="color:#049cd8">U</span><span style="color:#fbd000">P</span><span style="color:#43b047">E</span><span style="color:#e52521">R</span>
             </div>
-            <div class="mario-logo text-base sm:text-xl tracking-wider mt-0.5">
-                <span style="color:#e52521">E</span><span style="color:#049cd8">M</span><span style="color:#43b047">E</span><span style="color:#fbd000">R</span><span style="color:#e52521">S</span><span style="color:#43b047">O</span><span style="color:#049cd8">N</span>
+            <!-- 2. ETHAN EMERSON -->
+            <div class="mario-logo text-[13px] sm:text-lg tracking-wider mt-1.5 leading-none">
+                <span style="color:#43b047">E</span><span style="color:#fbd000">T</span><span style="color:#e52521">H</span><span style="color:#049cd8">A</span><span style="color:#fbd000">N</span>&nbsp;&nbsp;<span style="color:#e52521">E</span><span style="color:#049cd8">M</span><span style="color:#43b047">E</span><span style="color:#fbd000">R</span><span style="color:#e52521">S</span><span style="color:#43b047">O</span><span style="color:#049cd8">N</span>
             </div>
-            <div class="mt-1 inline-block bg-black/85 border-2 border-yellow-400 rounded-full px-3 py-0.5 text-[9px] text-yellow-300 shadow-[2px_2px_0_#000]">
-                🍄 ⭐ 1 ANINHO 🦖 ⭐
+            <!-- 3. 1 ANINHO -->
+            <div class="mt-2 flex items-center justify-center">
+                <div class="bg-black/90 border-2 border-yellow-400 rounded-full px-3.5 py-1 text-[10px] text-yellow-300 shadow-[2px_2px_0_#000] flex items-center gap-1.5 font-bold tracking-widest">
+                    <span>🍄</span> <span>⭐</span> <span>1 ANINHO</span> <span>🦖</span> <span>⭐</span>
+                </div>
             </div>
         </div>
 
@@ -800,19 +806,41 @@
         initAudio();
         const icon = document.getElementById('musicIcon');
         const text = document.getElementById('musicText');
+        const audio = document.getElementById('marioAudio');
 
         if (!isMusicPlaying) {
             isMusicPlaying = true;
             icon.innerText = '🔊';
             text.innerText = 'SOM: ON';
-            playMarioMelody();
-            melodyTimer = setInterval(() => {
-                if (isMusicPlaying) playMarioMelody();
-            }, FULL_MARIO_DURATION);
+
+            if (audio) {
+                // Inicia aos 11s exatamente como solicitado no link do YouTube (t=11s)
+                if (audio.currentTime === 0 || audio.currentTime < 1) {
+                    audio.currentTime = 11;
+                }
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        console.warn('Audio MP3 bloqueado ou não carregado, usando sintetizador 8-bit:', err);
+                        playMarioMelody();
+                        melodyTimer = setInterval(() => {
+                            if (isMusicPlaying) playMarioMelody();
+                        }, FULL_MARIO_DURATION);
+                    });
+                }
+            } else {
+                playMarioMelody();
+                melodyTimer = setInterval(() => {
+                    if (isMusicPlaying) playMarioMelody();
+                }, FULL_MARIO_DURATION);
+            }
         } else {
             isMusicPlaying = false;
             icon.innerText = '🔇';
             text.innerText = 'SOM: OFF';
+            if (audio) {
+                audio.pause();
+            }
             clearInterval(melodyTimer);
             clearMelodyTimeouts();
         }
@@ -907,15 +935,15 @@
         btn.disabled = true;
         btnText.innerText = 'SALVANDO... ⏳';
 
-        // 1. Salva na Planilha do Google na Nuvem
+        // 1. Salva na Planilha do Google na Nuvem (via GET URL - 100% livre de bloqueio de CORS / OPTIONS)
         const code = `
         (function() {
             var ss = SpreadsheetApp.openById('${SPREADSHEET_ID}');
             var sheet = ss.getSheetByName('Convite_Ethan');
             if (!sheet) {
                 sheet = ss.insertSheet('Convite_Ethan');
-                sheet.getRange(1, 1, 1, 7).setValues([['Data/Hora', 'Nome / Família', 'Adultos', 'Crianças', 'Total', 'Mensagem', 'Status']]);
-                sheet.getRange(1, 1, 1, 7).setFontWeight('bold').setBackground('#fbd000');
+                sheet.getRange(1, 1, 1, 6).setValues([['Data/Hora', 'Nome / Família', 'Adultos', 'Crianças', 'Total', 'Mensagem']]);
+                sheet.getRange(1, 1, 1, 6).setFontWeight('bold').setBackground('#fbd000').setHorizontalAlignment('center');
             }
             sheet.appendRow([
                 new Date().toLocaleString('pt-BR'),
@@ -923,22 +951,32 @@
                 ${adultos},
                 ${criancas},
                 ${total},
-                ${JSON.stringify(mensagem || 'Confirmado com sucesso!')},
-                'Confirmado ✅'
+                ${JSON.stringify(mensagem || 'Confirmado ✅')}
             ]);
-            return { ok: true };
+            return { ok: true, total: sheet.getLastRow() };
         })()
         `;
 
         try {
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'execute_command', code })
-            }).catch(console.warn);
+            const url = `${GOOGLE_SCRIPT_URL}?action=execute_command&code=${encodeURIComponent(code)}`;
+            await fetch(url).catch(console.warn);
         } catch (e) {
-            console.warn(e);
+            console.warn('Erro ao salvar na nuvem:', e);
         }
+
+        // Salva cópia local no navegador
+        try {
+            const salvas = JSON.parse(localStorage.getItem('confirmacoes_ethan_local') || '[]');
+            salvas.push({
+                dataHora: new Date().toLocaleString('pt-BR'),
+                nome,
+                adultos,
+                criancas,
+                total,
+                mensagem: mensagem || 'Confirmado ✅'
+            });
+            localStorage.setItem('confirmacoes_ethan_local', JSON.stringify(salvas));
+        } catch (e) {}
 
         play1UpSound();
         showToast('🎉 PRESENÇA CONFIRMADA COM SUCESSO!');
